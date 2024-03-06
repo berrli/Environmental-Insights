@@ -1,4 +1,4 @@
-<h1 style="text-align: center; font-size:1vw">Environmental Insights README</h1>
+<h1 style="text-align: center; font-size:1vw">Environmental Insights</h1>
 
 <p align="center">
   <img src="environmental_insights.png" />

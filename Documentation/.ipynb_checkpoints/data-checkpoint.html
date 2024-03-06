@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module data</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">data</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/f/University%20of%20Exeter/environmental_insights/data.py">/mnt/f/University of Exeter/environmental_insights/data.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="geopandas.html">geopandas</a><br>
+<a href="itertools.html">itertools</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="overpy.html">overpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-air_pollution_concentration_complete_set_real_time_global"><strong>air_pollution_concentration_complete_set_real_time_global</strong></a>(time)</dt><dd><span class="code">Retrieve&nbsp;the&nbsp;complete&nbsp;calculated&nbsp;dataset&nbsp;for&nbsp;a&nbsp;given&nbsp;timestamp&nbsp;in&nbsp;the&nbsp;global&nbsp;dataset.<br>
+&nbsp;<br>
+Parameters:<br>
+time&nbsp;(string):&nbsp;A&nbsp;string&nbsp;denoting&nbsp;the&nbsp;timestamp&nbsp;desired,&nbsp;of&nbsp;the&nbsp;form&nbsp;DD-MM-YYYY&nbsp;HHmmss<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;dataset&nbsp;for&nbsp;the&nbsp;UK&nbsp;for&nbsp;a&nbsp;given&nbsp;timestamp.</span></dd></dl>
+ <dl><dt><a name="-air_pollution_concentration_complete_set_real_time_united_kingdom"><strong>air_pollution_concentration_complete_set_real_time_united_kingdom</strong></a>(time)</dt><dd><span class="code">Retrieve&nbsp;the&nbsp;complete&nbsp;predicted&nbsp;dataset&nbsp;for&nbsp;a&nbsp;given&nbsp;timestamp&nbsp;in&nbsp;the&nbsp;UK&nbsp;dataset.<br>
+&nbsp;<br>
+Parameters:<br>
+time&nbsp;(string):&nbsp;A&nbsp;string&nbsp;denoting&nbsp;the&nbsp;timestamp&nbsp;desired,&nbsp;of&nbsp;the&nbsp;form&nbsp;YYYY-MM-DD&nbsp;HHmmss<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;dataset&nbsp;for&nbsp;the&nbsp;UK&nbsp;for&nbsp;a&nbsp;given&nbsp;timestamp.</span></dd></dl>
+ <dl><dt><a name="-air_pollution_concentration_nearest_point_real_time_global"><strong>air_pollution_concentration_nearest_point_real_time_global</strong></a>(latitude, longitude, time, global_grids)</dt><dd><span class="code">Retrieve&nbsp;a&nbsp;single&nbsp;air&nbsp;pollution&nbsp;concentration&nbsp;data&nbsp;point&nbsp;predicted&nbsp;based&nbsp;on&nbsp;the&nbsp;global&nbsp;data,&nbsp;based&nbsp;on&nbsp;the&nbsp;cloest&nbsp;point&nbsp;given&nbsp;by&nbsp;the&nbsp;latitude&nbsp;and&nbsp;longitude.<br>
+&nbsp;<br>
+Parameters:<br>
+latitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;latitude.<br>
+longitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;longitude.<br>
+time&nbsp;(string):&nbsp;A&nbsp;string&nbsp;denoting&nbsp;the&nbsp;timestamp&nbsp;desired,&nbsp;of&nbsp;the&nbsp;form&nbsp;DD-MM-YYYY&nbsp;HHmmss<br>
+global_grids&nbsp;(geodataframe):&nbsp;A&nbsp;Geodataframe&nbsp;that&nbsp;describes&nbsp;the&nbsp;estimation&nbsp;points&nbsp;for&nbsp;the&nbsp;uk&nbsp;model<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;nearest&nbsp;point&nbsp;in&nbsp;the&nbsp;data&nbsp;at&nbsp;the&nbsp;given&nbsp;timestamp.</span></dd></dl>
+ <dl><dt><a name="-air_pollution_concentration_nearest_point_real_time_united_kingdom"><strong>air_pollution_concentration_nearest_point_real_time_united_kingdom</strong></a>(latitude, longitude, time, uk_grids)</dt><dd><span class="code">Retrieve&nbsp;a&nbsp;single&nbsp;air&nbsp;pollution&nbsp;concentration&nbsp;data&nbsp;point&nbsp;predicted&nbsp;based&nbsp;on&nbsp;the&nbsp;UK&nbsp;data,&nbsp;based&nbsp;on&nbsp;the&nbsp;cloest&nbsp;point&nbsp;given&nbsp;by&nbsp;the&nbsp;latitude&nbsp;and&nbsp;longitude.<br>
+&nbsp;<br>
+Parameters:<br>
+latitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;latitude.<br>
+longitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;longitude.<br>
+time&nbsp;(string):&nbsp;A&nbsp;string&nbsp;denoting&nbsp;the&nbsp;timestamp&nbsp;desired,&nbsp;of&nbsp;the&nbsp;form&nbsp;YYYY-MM-DD&nbsp;HHmmss.<br>
+uk_grids&nbsp;(geodataframe):&nbsp;A&nbsp;Geodataframe&nbsp;that&nbsp;describes&nbsp;the&nbsp;estimation&nbsp;points&nbsp;for&nbsp;the&nbsp;uk&nbsp;model.<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;nearest&nbsp;point&nbsp;in&nbsp;the&nbsp;data&nbsp;at&nbsp;the&nbsp;given&nbsp;timestamp.</span></dd></dl>
+ <dl><dt><a name="-air_pollution_concentration_nearest_point_typical_day_united_kingdom"><strong>air_pollution_concentration_nearest_point_typical_day_united_kingdom</strong></a>(month, day_of_Week, hour, latitude, longitude, uk_grids)</dt><dd><span class="code">Retrieve&nbsp;a&nbsp;single&nbsp;air&nbsp;pollution&nbsp;concentration&nbsp;data&nbsp;point&nbsp;predicted&nbsp;based&nbsp;on&nbsp;the&nbsp;UK&nbsp;data,&nbsp;based&nbsp;on&nbsp;the&nbsp;cloest&nbsp;point&nbsp;given&nbsp;by&nbsp;the&nbsp;latitude&nbsp;and&nbsp;longitude.<br>
+&nbsp;<br>
+Parameters:<br>
+Parameters:<br>
+month&nbsp;(int):&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;month&nbsp;of&nbsp;interest,&nbsp;1&nbsp;being&nbsp;january,&nbsp;and&nbsp;12&nbsp;being&nbsp;December.<br>
+day_of_Week&nbsp;(string):&nbsp;A&nbsp;string&nbsp;to&nbsp;represent&nbsp;the&nbsp;day&nbsp;of&nbsp;week&nbsp;of&nbsp;interest&nbsp;in&nbsp;the&nbsp;form&nbsp;of&nbsp;"Friday".<br>
+hour&nbsp;(int):&nbsp;&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;hour&nbsp;of&nbsp;interest,&nbsp;0&nbsp;being&nbsp;midnight,&nbsp;and&nbsp;23&nbsp;being&nbsp;the&nbsp;final&nbsp;possible&nbsp;hour&nbsp;of&nbsp;the&nbsp;day<br>
+latitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;latitude.<br>
+longitude&nbsp;(float):&nbsp;A&nbsp;float&nbsp;denoting&nbsp;the&nbsp;desired&nbsp;longitude.<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;nearest&nbsp;point&nbsp;in&nbsp;the&nbsp;data&nbsp;at&nbsp;the&nbsp;given&nbsp;timestamp.</span></dd></dl>
+ <dl><dt><a name="-air_pollution_concentration_typical_day_real_time_united_kingdom"><strong>air_pollution_concentration_typical_day_real_time_united_kingdom</strong></a>(month, day_of_Week, hour)</dt><dd><span class="code">Retrieve&nbsp;the&nbsp;typical&nbsp;day&nbsp;complete&nbsp;dataset&nbsp;for&nbsp;the&nbsp;UK&nbsp;for&nbsp;a&nbsp;given&nbsp;time<br>
+&nbsp;<br>
+Parameters:<br>
+month&nbsp;(int):&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;month&nbsp;of&nbsp;interest,&nbsp;1&nbsp;being&nbsp;january,&nbsp;and&nbsp;12&nbsp;being&nbsp;December.<br>
+day_of_Week&nbsp;(string):&nbsp;A&nbsp;string&nbsp;to&nbsp;represent&nbsp;the&nbsp;day&nbsp;of&nbsp;week&nbsp;of&nbsp;interest&nbsp;in&nbsp;the&nbsp;form&nbsp;of&nbsp;"Friday".<br>
+hour&nbsp;(int):&nbsp;&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;hour&nbsp;of&nbsp;interest,&nbsp;0&nbsp;being&nbsp;midnight,&nbsp;and&nbsp;23&nbsp;being&nbsp;the&nbsp;final&nbsp;possible&nbsp;hour&nbsp;of&nbsp;the&nbsp;day<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;typical&nbsp;dataset&nbsp;for&nbsp;the&nbsp;UK&nbsp;for&nbsp;a&nbsp;given&nbsp;tiem&nbsp;of&nbsp;interest</span></dd></dl>
+ <dl><dt><a name="-calculate_new_metrics_distance_total"><strong>calculate_new_metrics_distance_total</strong></a>(current_infrastructure, highway_type, start_point, end_point, land_grids_centroids, land_grids)</dt><dd><span class="code">Simulate&nbsp;the&nbsp;addition&nbsp;of&nbsp;a&nbsp;proposed&nbsp;highway&nbsp;to&nbsp;current&nbsp;infrastructure&nbsp;and&nbsp;calculate&nbsp;new&nbsp;metrics.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;creates&nbsp;a&nbsp;new&nbsp;proposed&nbsp;highway&nbsp;segment&nbsp;based&nbsp;on&nbsp;given&nbsp;start&nbsp;and&nbsp;end&nbsp;points.<br>
+The&nbsp;proposed&nbsp;highway&nbsp;is&nbsp;then&nbsp;added&nbsp;to&nbsp;the&nbsp;current&nbsp;infrastructure&nbsp;dataset.&nbsp;After&nbsp;adding&nbsp;the<br>
+new&nbsp;highway,&nbsp;the&nbsp;function&nbsp;calculates&nbsp;distance&nbsp;metrics&nbsp;and&nbsp;total&nbsp;length&nbsp;of&nbsp;the&nbsp;specific&nbsp;highway&nbsp;type.<br>
+&nbsp;<br>
+Parameters:<br>
+current_infrastructure&nbsp;(GeoDataFrame):&nbsp;The&nbsp;current&nbsp;infrastructure&nbsp;dataset&nbsp;with&nbsp;existing&nbsp;highways.<br>
+highway_type&nbsp;(str):&nbsp;Type&nbsp;of&nbsp;the&nbsp;highway&nbsp;for&nbsp;which&nbsp;metrics&nbsp;are&nbsp;calculated&nbsp;(e.g.,&nbsp;"motorway").<br>
+start_point&nbsp;(tuple&nbsp;of&nbsp;float):&nbsp;Coordinates&nbsp;(x,&nbsp;y)&nbsp;for&nbsp;the&nbsp;starting&nbsp;point&nbsp;of&nbsp;the&nbsp;proposed&nbsp;highway.<br>
+end_point&nbsp;(tuple&nbsp;of&nbsp;float):&nbsp;Coordinates&nbsp;(x,&nbsp;y)&nbsp;for&nbsp;the&nbsp;ending&nbsp;point&nbsp;of&nbsp;the&nbsp;proposed&nbsp;highway.<br>
+land_grids_centroids&nbsp;(dataframe)&nbsp;:&nbsp;Dataframe&nbsp;of&nbsp;the&nbsp;grids&nbsp;for&nbsp;predicition&nbsp;to&nbsp;be&nbsp;made&nbsp;on,&nbsp;with&nbsp;the&nbsp;geometry&nbsp;being&nbsp;a&nbsp;set&nbsp;of&nbsp;points&nbsp;representing&nbsp;the&nbsp;centroid&nbsp;of&nbsp;such&nbsp;grids.&nbsp;<br>
+land_grids&nbsp;(dataframe)&nbsp;:&nbsp;Dataframe&nbsp;of&nbsp;the&nbsp;grids&nbsp;for&nbsp;predicition&nbsp;to&nbsp;be&nbsp;made&nbsp;on,&nbsp;with&nbsp;the&nbsp;geometry&nbsp;being&nbsp;a&nbsp;set&nbsp;of&nbsp;polygons&nbsp;representing&nbsp;the&nbsp;grids&nbsp;themselves.&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+tuple:<br>
+&nbsp;&nbsp;-&nbsp;GeoDataFrame:&nbsp;Contains&nbsp;metrics&nbsp;such&nbsp;as&nbsp;road&nbsp;infrastructure&nbsp;distance&nbsp;and&nbsp;total&nbsp;road&nbsp;length&nbsp;for&nbsp;each&nbsp;grid.<br>
+&nbsp;&nbsp;-&nbsp;GeoDataFrame:&nbsp;A&nbsp;merged&nbsp;dataset&nbsp;of&nbsp;current&nbsp;infrastructure&nbsp;and&nbsp;the&nbsp;proposed&nbsp;highway.<br>
+&nbsp;<br>
+Note:<br>
+-&nbsp;The&nbsp;function&nbsp;assumes&nbsp;the&nbsp;use&nbsp;of&nbsp;EPSG:4326&nbsp;and&nbsp;EPSG:3395&nbsp;for&nbsp;coordinate&nbsp;reference&nbsp;systems.<br>
+-&nbsp;It&nbsp;also&nbsp;assumes&nbsp;the&nbsp;existence&nbsp;of&nbsp;helper&nbsp;functions&nbsp;like&nbsp;`getEvenSpacedPoints`&nbsp;and&nbsp;a&nbsp;global&nbsp;variable&nbsp;`land_grids_centroids`.</span></dd></dl>
+ <dl><dt><a name="-ckd_nearest_LineString"><strong>ckd_nearest_LineString</strong></a>(gdf_A, gdf_B, gdf_B_cols)</dt><dd><span class="code">Calculate&nbsp;the&nbsp;nearest&nbsp;points&nbsp;between&nbsp;two&nbsp;GeoDataFrames&nbsp;containing&nbsp;LineString&nbsp;geometries.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;uses&nbsp;cKDTree&nbsp;to&nbsp;efficiently&nbsp;find&nbsp;the&nbsp;nearest&nbsp;points&nbsp;between&nbsp;two&nbsp;sets<br>
+of&nbsp;LineStrings.&nbsp;For&nbsp;each&nbsp;point&nbsp;in&nbsp;`gdf_A`,&nbsp;the&nbsp;function&nbsp;finds&nbsp;the&nbsp;closest&nbsp;point<br>
+in&nbsp;`gdf_B`&nbsp;and&nbsp;returns&nbsp;the&nbsp;distances&nbsp;along&nbsp;with&nbsp;selected&nbsp;columns&nbsp;from&nbsp;`gdf_B`.<br>
+&nbsp;<br>
+Parameters:<br>
+gdf_A&nbsp;(GeoDataFrame):&nbsp;A&nbsp;GeoDataFrame&nbsp;containing&nbsp;LineString&nbsp;geometries.<br>
+gdf_B&nbsp;(GeoDataFrame):&nbsp;A&nbsp;GeoDataFrame&nbsp;containing&nbsp;LineString&nbsp;geometries&nbsp;which&nbsp;will&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used&nbsp;to&nbsp;find&nbsp;the&nbsp;closest&nbsp;points&nbsp;to&nbsp;`gdf_A`.<br>
+gdf_B_cols&nbsp;(list&nbsp;or&nbsp;tuple):&nbsp;A&nbsp;list&nbsp;or&nbsp;tuple&nbsp;containing&nbsp;column&nbsp;names&nbsp;from&nbsp;`gdf_B`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;will&nbsp;be&nbsp;included&nbsp;in&nbsp;the&nbsp;resulting&nbsp;DataFrame.<br>
+&nbsp;<br>
+Returns:<br>
+GeoDataFrame:&nbsp;A&nbsp;GeoDataFrame&nbsp;with&nbsp;each&nbsp;row&nbsp;containing&nbsp;a&nbsp;geometry&nbsp;from&nbsp;`gdf_A`,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;corresponding&nbsp;closest&nbsp;geometry&nbsp;details&nbsp;from&nbsp;`gdf_B`&nbsp;(as&nbsp;specified&nbsp;by&nbsp;`gdf_B_cols`),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;distance&nbsp;to&nbsp;the&nbsp;closest&nbsp;point&nbsp;in&nbsp;`gdf_B`.<br>
+&nbsp;<br>
+Note:<br>
+The&nbsp;resulting&nbsp;GeoDataFrame&nbsp;maintains&nbsp;the&nbsp;order&nbsp;of&nbsp;`gdf_A`&nbsp;and&nbsp;attaches&nbsp;the&nbsp;nearest<br>
+details&nbsp;from&nbsp;`gdf_B`.<br>
+This&nbsp;code&nbsp;was&nbsp;adapted&nbsp;from&nbsp;the&nbsp;code&nbsp;avaliable&nbsp;here:&nbsp;<a href="https://gis.stackexchange.com/questions/222315/finding-nearest-point-in-other-geodataframe-using-geopandas">https://gis.stackexchange.com/questions/222315/finding-nearest-point-in-other-geodataframe-using-geopandas</a></span></dd></dl>
+ <dl><dt><a name="-download_file_data"><strong>download_file_data</strong></a>(filename)</dt><dd><span class="code">Checks&nbsp;if&nbsp;a&nbsp;file&nbsp;that&nbsp;has&nbsp;been&nbsp;requested&nbsp;has&nbsp;been&nbsp;downloaded&nbsp;and&nbsp;if&nbsp;it&nbsp;has&nbsp;then&nbsp;it&nbsp;will&nbsp;download&nbsp;the&nbsp;file<br>
+&nbsp;<br>
+Parameters:<br>
+filename&nbsp;(string):&nbsp;The&nbsp;dataset&nbsp;filename&nbsp;to&nbsp;be&nbsp;downloaded&nbsp;from&nbsp;the&nbsp;remote&nbsp;server</span></dd></dl>
+ <dl><dt><a name="-fetch_amenities_as_geodataframe"><strong>fetch_amenities_as_geodataframe</strong></a>(amenity_type, min_lat, min_lon, max_lat, max_lon)</dt><dd><span class="code">Fetch&nbsp;amenities&nbsp;of&nbsp;a&nbsp;given&nbsp;type&nbsp;within&nbsp;a&nbsp;bounding&nbsp;box&nbsp;and&nbsp;return&nbsp;as&nbsp;a&nbsp;GeoDataFrame.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters:<br>
+amenity_type&nbsp;(string):&nbsp;Type&nbsp;of&nbsp;amenity,&nbsp;e.g.,&nbsp;"hospital"<br>
+min_lat&nbsp;(float):&nbsp;Minimum&nbsp;latitude<br>
+min_lon&nbsp;(float):&nbsp;Minimum&nbsp;longitude<br>
+max_lat&nbsp;(float):&nbsp;Maximum&nbsp;latitude<br>
+max_lon&nbsp;(float):&nbsp;Maximum&nbsp;longitude<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;GeoDataFrame&nbsp;containing&nbsp;the&nbsp;amenities&nbsp;with&nbsp;their&nbsp;names&nbsp;and&nbsp;coordinates</span></dd></dl>
+ <dl><dt><a name="-get_even_spaced_points"><strong>get_even_spaced_points</strong></a>(points, number_of_points)</dt><dd><span class="code">Generate&nbsp;a&nbsp;list&nbsp;of&nbsp;evenly&nbsp;spaced&nbsp;points&nbsp;between&nbsp;two&nbsp;given&nbsp;points.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;calculates&nbsp;the&nbsp;distance&nbsp;(or&nbsp;difference)&nbsp;between&nbsp;two&nbsp;input&nbsp;points<br>
+and&nbsp;divides&nbsp;this&nbsp;distance&nbsp;into&nbsp;`number_of_points`&nbsp;equal&nbsp;segments.&nbsp;The&nbsp;resulting<br>
+points,&nbsp;including&nbsp;the&nbsp;start&nbsp;and&nbsp;end&nbsp;points,&nbsp;are&nbsp;returned&nbsp;in&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Parameters:<br>
+points&nbsp;(list&nbsp;or&nbsp;tuple&nbsp;of&nbsp;float):&nbsp;A&nbsp;list&nbsp;or&nbsp;tuple&nbsp;containing&nbsp;two&nbsp;points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(start&nbsp;and&nbsp;end)&nbsp;between&nbsp;which&nbsp;the&nbsp;evenly&nbsp;spaced&nbsp;points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;to&nbsp;be&nbsp;calculated.<br>
+number_of_points&nbsp;(int):&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;points&nbsp;to&nbsp;generate,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;including&nbsp;the&nbsp;start&nbsp;and&nbsp;end&nbsp;points.<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;A&nbsp;list&nbsp;of&nbsp;evenly&nbsp;spaced&nbsp;points&nbsp;between&nbsp;the&nbsp;provided&nbsp;start&nbsp;and&nbsp;end&nbsp;points.<br>
+&nbsp;<br>
+Example:<br>
+&gt;&gt;&gt;&nbsp;getEvenSpacedPoints([1,&nbsp;10],&nbsp;5)<br>
+[1.0,&nbsp;3.25,&nbsp;5.5,&nbsp;7.75,&nbsp;10.0]<br>
+&nbsp;<br>
+Note:<br>
+The&nbsp;function&nbsp;assumes&nbsp;that&nbsp;the&nbsp;points&nbsp;list&nbsp;is&nbsp;sorted&nbsp;in&nbsp;ascending&nbsp;order.</span></dd></dl>
+ <dl><dt><a name="-get_global_grids"><strong>get_global_grids</strong></a>()</dt><dd><span class="code">Get&nbsp;the&nbsp;spatial&nbsp;grids&nbsp;that&nbsp;represent&nbsp;the&nbsp;locations&nbsp;at&nbsp;air&nbsp;pollution&nbsp;estimations&nbsp;are&nbsp;made&nbsp;on&nbsp;for&nbsp;the&nbsp;Global&nbsp;Model.<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe&nbsp;:&nbsp;A&nbsp;Geodataframe&nbsp;of&nbsp;the&nbsp;polygons&nbsp;for&nbsp;each&nbsp;of&nbsp;the&nbsp;grids&nbsp;in&nbsp;the&nbsp;Global&nbsp;Model&nbsp;and&nbsp;unique&nbsp;ID.</span></dd></dl>
+ <dl><dt><a name="-get_highways_as_geodataframe"><strong>get_highways_as_geodataframe</strong></a>(highway_type, min_lat, min_lon, max_lat, max_lon)</dt><dd><span class="code">Fetch&nbsp;highways&nbsp;of&nbsp;a&nbsp;specified&nbsp;type&nbsp;within&nbsp;a&nbsp;bounding&nbsp;box&nbsp;from&nbsp;OSM&nbsp;and&nbsp;return&nbsp;as&nbsp;a&nbsp;GeoDataFrame.<br>
+&nbsp;<br>
+Parameters:<br>
+highway_type&nbsp;(string):&nbsp;Type&nbsp;of&nbsp;highway,&nbsp;e.g.,&nbsp;"motorway",&nbsp;"residential"<br>
+min_lat&nbsp;(float):&nbsp;Minimum&nbsp;latitude<br>
+min_lon&nbsp;(float):&nbsp;Minimum&nbsp;longitude<br>
+max_lat&nbsp;(float):&nbsp;Maximum&nbsp;latitude<br>
+max_lon&nbsp;(float):&nbsp;Maximum&nbsp;longitude<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;GeoDataFrame&nbsp;containing&nbsp;the&nbsp;highways&nbsp;with&nbsp;their&nbsp;names&nbsp;and&nbsp;coordinates</span></dd></dl>
+ <dl><dt><a name="-get_uk_grids"><strong>get_uk_grids</strong></a>()</dt><dd><span class="code">Get&nbsp;the&nbsp;spatial&nbsp;grids&nbsp;that&nbsp;represent&nbsp;the&nbsp;locations&nbsp;at&nbsp;air&nbsp;pollution&nbsp;estimations&nbsp;are&nbsp;made&nbsp;on&nbsp;for&nbsp;the&nbsp;UK&nbsp;Model.<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe&nbsp;:&nbsp;A&nbsp;Geodataframe&nbsp;of&nbsp;the&nbsp;polygons&nbsp;for&nbsp;each&nbsp;of&nbsp;the&nbsp;grids&nbsp;in&nbsp;the&nbsp;UK&nbsp;Model&nbsp;alongside&nbsp;their&nbsp;centroid&nbsp;and&nbsp;unique&nbsp;ID.</span></dd></dl>
+ <dl><dt><a name="-replace_feature_vector_column"><strong>replace_feature_vector_column</strong></a>(feature_vector, new_feature_vector, feature_vector_name)</dt><dd><span class="code">Replace&nbsp;the&nbsp;feature&nbsp;vector&nbsp;column&nbsp;name&nbsp;with&nbsp;the&nbsp;new&nbsp;feature&nbsp;vector&nbsp;column&nbsp;name,&nbsp;replacing&nbsp;the&nbsp;data&nbsp;within&nbsp;the&nbsp;dataframe&nbsp;with&nbsp;new&nbsp;environmental&nbsp;conditions.&nbsp;<br>
+Parameters:<br>
+feature_vector&nbsp;(dataframe)&nbsp;:&nbsp;dataframe&nbsp;of&nbsp;the&nbsp;original&nbsp;data.<br>
+new_feature_vector&nbsp;(dataframe)&nbsp;:&nbsp;dataframe&nbsp;containing&nbsp;the&nbsp;new&nbsp;feature&nbsp;vector&nbsp;that&nbsp;is&nbsp;to&nbsp;be&nbsp;used&nbsp;to&nbsp;replace&nbsp;the&nbsp;data&nbsp;in&nbsp;feature_vector.&nbsp;<br>
+feature_vector_name&nbsp;(string)&nbsp;:&nbsp;Name&nbsp;of&nbsp;the&nbsp;feature&nbsp;vector&nbsp;to&nbsp;be&nbsp;changed.<br>
+&nbsp;<br>
+Returns:<br>
+dataframe&nbsp;:&nbsp;A&nbsp;dataframe&nbsp;of&nbsp;the&nbsp;original&nbsp;data&nbsp;that&nbsp;was&nbsp;added&nbsp;with&nbsp;the&nbsp;feature&nbsp;vector&nbsp;now&nbsp;replace&nbsp;by&nbsp;the&nbsp;new&nbsp;data.</span></dd></dl>
+</td></tr></table>
+</body></html>

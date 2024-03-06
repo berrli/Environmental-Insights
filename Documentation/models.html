@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module models</title>
+</head><body>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="pandas.html">pandas</a><br>
+<a href="pickle.html">pickle</a><br>
+</td><td class="multicolumn"><a href="variables.html">variables</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-download_file_model"><strong>download_file_model</strong></a>(filename)</dt><dd><span class="code">Checks&nbsp;if&nbsp;a&nbsp;file&nbsp;that&nbsp;has&nbsp;been&nbsp;requested&nbsp;has&nbsp;been&nbsp;downloaded&nbsp;and&nbsp;if&nbsp;it&nbsp;has&nbsp;then&nbsp;it&nbsp;will&nbsp;download&nbsp;the&nbsp;file<br>
+&nbsp;<br>
+Parameters:<br>
+filename&nbsp;(string):&nbsp;The&nbsp;dataset&nbsp;filename&nbsp;to&nbsp;be&nbsp;downloaded&nbsp;from&nbsp;the&nbsp;remote&nbsp;server</span></dd></dl>
+ <dl><dt><a name="-get_model_feature_vector"><strong>get_model_feature_vector</strong></a>(model_type)</dt><dd><span class="code">Getter&nbsp;function&nbsp;to&nbsp;return&nbsp;the&nbsp;list&nbsp;of&nbsp;features&nbsp;that&nbsp;were&nbsp;used&nbsp;for&nbsp;a&nbsp;given&nbsp;model&nbsp;type.<br>
+&nbsp;<br>
+Parameters:<br>
+model_type&nbsp;(string):&nbsp;Whether&nbsp;the&nbsp;model&nbsp;requested&nbsp;is&nbsp;the&nbsp;one&nbsp;with&nbsp;all&nbsp;of&nbsp;the&nbsp;features&nbsp;or&nbsp;just&nbsp;the&nbsp;transport&nbsp;infrastructure&nbsp;features.<br>
+&nbsp;<br>
+Returns:<br>
+list:&nbsp;A&nbsp;list&nbsp;of&nbsp;the&nbsp;feature&nbsp;vector&nbsp;names&nbsp;that&nbsp;were&nbsp;used&nbsp;in&nbsp;the&nbsp;model&nbsp;request.</span></dd></dl>
+ <dl><dt><a name="-load_feature_vector_typical_day_united_kingdom"><strong>load_feature_vector_typical_day_united_kingdom</strong></a>(month, day_of_week, hour, uk_grids)</dt><dd><span class="code">Load&nbsp;in&nbsp;a&nbsp;feature&nbsp;vector&nbsp;for&nbsp;the&nbsp;typical&nbsp;day&nbsp;in&nbsp;the&nbsp;United&nbsp;Kingdom.<br>
+&nbsp;<br>
+Parameters:<br>
+month&nbsp;(int):&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;month&nbsp;of&nbsp;interest,&nbsp;1&nbsp;being&nbsp;january,&nbsp;and&nbsp;12&nbsp;being&nbsp;December.<br>
+day_of_week&nbsp;(string):&nbsp;A&nbsp;string&nbsp;to&nbsp;represent&nbsp;the&nbsp;day&nbsp;of&nbsp;week&nbsp;of&nbsp;interest&nbsp;in&nbsp;the&nbsp;form&nbsp;of&nbsp;"Friday".<br>
+hour&nbsp;(int):&nbsp;&nbsp;An&nbsp;int&nbsp;to&nbsp;represent&nbsp;the&nbsp;hour&nbsp;of&nbsp;interest,&nbsp;0&nbsp;being&nbsp;midnight,&nbsp;and&nbsp;23&nbsp;being&nbsp;the&nbsp;final&nbsp;possible&nbsp;hour&nbsp;of&nbsp;the&nbsp;day<br>
+uk_grids&nbsp;(geodataframe):&nbsp;A&nbsp;Geodataframe&nbsp;that&nbsp;describes&nbsp;the&nbsp;estimation&nbsp;points&nbsp;for&nbsp;the&nbsp;uk&nbsp;model<br>
+&nbsp;<br>
+Returns:<br>
+geodataframe:&nbsp;A&nbsp;geodataframe&nbsp;of&nbsp;the&nbsp;typical&nbsp;dataset&nbsp;feature&nbsp;vector&nbsp;in&nbsp;the&nbsp;UK.</span></dd></dl>
+ <dl><dt><a name="-load_model_global"><strong>load_model_global</strong></a>(model_type, model_dataset, air_pollutant)</dt><dd><span class="code">Load&nbsp;in&nbsp;a&nbsp;pre&nbsp;trained&nbsp;air&nbsp;pollution&nbsp;machine&nbsp;learning&nbsp;model&nbsp;for&nbsp;the&nbsp;globe.<br>
+&nbsp;<br>
+Parameters:<br>
+model_type&nbsp;(string):&nbsp;The&nbsp;model&nbsp;type&nbsp;to&nbsp;load&nbsp;in&nbsp;for&nbsp;the&nbsp;quantile&nbsp;regression,&nbsp;options:&nbsp;0.95,&nbsp;0.5,&nbsp;0.05.<br>
+model_dataset&nbsp;(string):&nbsp;The&nbsp;underpinning&nbsp;dataset&nbsp;that&nbsp;the&nbsp;model&nbsp;has&nbsp;been&nbsp;trained&nbsp;on<br>
+air_pollutant&nbsp;(string):&nbsp;&nbsp;The&nbsp;air&nbsp;pollutant&nbsp;the&nbsp;model&nbsp;has&nbsp;been&nbsp;trained&nbsp;on.<br>
+&nbsp;<br>
+Return:<br>
+lightGBMRegression&nbsp;models:&nbsp;A&nbsp;lightGBM&nbsp;instance&nbsp;of&nbsp;the&nbsp;model.</span></dd></dl>
+ <dl><dt><a name="-load_model_united_kingdom"><strong>load_model_united_kingdom</strong></a>(model_type, model_dataset, air_pollutant)</dt><dd><span class="code">Load&nbsp;in&nbsp;a&nbsp;pre&nbsp;trained&nbsp;air&nbsp;pollution&nbsp;machine&nbsp;learning&nbsp;model&nbsp;for&nbsp;the&nbsp;UK.<br>
+&nbsp;<br>
+Parameters:<br>
+model_type&nbsp;(string):&nbsp;The&nbsp;model&nbsp;type&nbsp;to&nbsp;load&nbsp;in&nbsp;for&nbsp;the&nbsp;quantile&nbsp;regression,&nbsp;options:&nbsp;0.95,&nbsp;0.5,&nbsp;0.05.<br>
+model_dataset&nbsp;(string):&nbsp;The&nbsp;underpinning&nbsp;dataset&nbsp;that&nbsp;the&nbsp;model&nbsp;has&nbsp;been&nbsp;trained&nbsp;on<br>
+air_pollutant&nbsp;(string):&nbsp;&nbsp;The&nbsp;air&nbsp;pollutant&nbsp;the&nbsp;model&nbsp;has&nbsp;been&nbsp;trained&nbsp;on.<br>
+&nbsp;<br>
+Return:<br>
+lightGBMRegression&nbsp;models:&nbsp;A&nbsp;lightGBM&nbsp;instance&nbsp;of&nbsp;the&nbsp;model.</span></dd></dl>
+ <dl><dt><a name="-make_concentration_predicitions_united_kingdom"><strong>make_concentration_predicitions_united_kingdom</strong></a>(estimating_model, observation_data, estimating_feature_vector_column_names)</dt><dd><span class="code">Make&nbsp;predicition&nbsp;for&nbsp;a&nbsp;given&nbsp;environment&nbsp;conditions&nbsp;for&nbsp;air&nbsp;pollution&nbsp;concentrations.<br>
+&nbsp;<br>
+Parameters:<br>
+estimating_model&nbsp;(string):&nbsp;Whether&nbsp;the&nbsp;model&nbsp;requested&nbsp;is&nbsp;the&nbsp;one&nbsp;with&nbsp;all&nbsp;of&nbsp;the&nbsp;features&nbsp;or&nbsp;just&nbsp;the&nbsp;transport&nbsp;infrastructure&nbsp;features.<br>
+observation_data&nbsp;(dataframe):&nbsp;The&nbsp;observational&nbsp;data&nbsp;for&nbsp;the&nbsp;environmental&nbsp;conditions&nbsp;to&nbsp;make&nbsp;the&nbsp;predicitons&nbsp;on.<br>
+estimating_feature_vector_column_names&nbsp;(list):&nbsp;A&nbsp;list&nbsp;of&nbsp;the&nbsp;feature&nbsp;vector&nbsp;names&nbsp;that&nbsp;were&nbsp;used&nbsp;in&nbsp;the&nbsp;model&nbsp;request.<br>
+&nbsp;<br>
+Returns:<br>
+geoodataframe:&nbsp;Predictions&nbsp;for&nbsp;the&nbsp;given&nbsp;air&nbsp;pollutant&nbsp;for&nbsp;the&nbsp;given&nbsp;environmental&nbsp;conditions.</span></dd></dl>
+</td></tr></table>
+</body></html>

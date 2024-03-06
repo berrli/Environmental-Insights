@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module air_pollution_functions</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">air_pollution_functions</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/f/University%20of%20Exeter/environmental_insights/air_pollution_functions.py">/mnt/f/University of Exeter/environmental_insights/air_pollution_functions.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="matplotlib.colors.html">matplotlib.colors</a><br>
+<a href="geopandas.html">geopandas</a><br>
+</td><td class="multicolumn"><a href="math.html">math</a><br>
+<a href="matplotlib.patches.html">matplotlib.patches</a><br>
+</td><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+<a href="pandas.html">pandas</a><br>
+</td><td class="multicolumn"><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="variables.html">variables</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-air_pollution_concentrations_to_UK_daily_air_quality_index"><strong>air_pollution_concentrations_to_UK_daily_air_quality_index</strong></a>(predicitions, pollutant, air_pollutant_column_name)</dt><dd><span class="code">Add&nbsp;onto&nbsp;an&nbsp;existing&nbsp;dataframe&nbsp;the&nbsp;Daily&nbsp;Air&nbsp;Quality&nbsp;Index&nbsp;(<a href="https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info">https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info</a>)&nbsp;for&nbsp;the&nbsp;air&nbsp;pollutant&nbsp;concentration&nbsp;data&nbsp;described.<br>
+&nbsp;<br>
+Parameters:<br>
+predicitions&nbsp;(dataframe):&nbsp;A&nbsp;dataframe&nbsp;of&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;added&nbsp;onto<br>
+pollutant&nbsp;(string):&nbsp;The&nbsp;string&nbsp;of&nbsp;the&nbsp;air&nbsp;pollutant&nbsp;concentration&nbsp;thresholds&nbsp;to&nbsp;be&nbsp;used&nbsp;to&nbsp;create&nbsp;the&nbsp;air&nbsp;quality&nbsp;indexes.<br>
+air_pollutant_column_name&nbsp;(string):&nbsp;The&nbsp;string&nbsp;of&nbsp;the&nbsp;column&nbsp;name&nbsp;for&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentration&nbsp;to&nbsp;calculate&nbsp;the&nbsp;air&nbsp;quality&nbsp;index&nbsp;on.<br>
+&nbsp;<br>
+Returns:<br>
+dataframe:&nbsp;A&nbsp;dataframe&nbsp;with&nbsp;the&nbsp;additional&nbsp;columns&nbsp;for&nbsp;the&nbsp;air&nbsp;quality&nbsp;index&nbsp;based&nbsp;on&nbsp;the&nbsp;outlined&nbsp;air&nbsp;pollution&nbsp;concentration&nbsp;data.</span></dd></dl>
+ <dl><dt><a name="-change_in_aqi_visulisation"><strong>change_in_aqi_visulisation</strong></a>(first_dataframe, second_dataframe, air_pollutant, filename)</dt><dd><span class="code">Visualisation&nbsp;the&nbsp;change&nbsp;in&nbsp;concentrations&nbsp;for&nbsp;two&nbsp;datasets&nbsp;of&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;based&nbsp;on&nbsp;air&nbsp;quality&nbsp;indexes.<br>
+&nbsp;<br>
+Parameters:<br>
+Parameters:<br>
+first_dataframe&nbsp;(DataFrame):&nbsp;The&nbsp;first&nbsp;concentration&nbsp;dataset.<br>
+second_dataframe&nbsp;(DataFrame):&nbsp;The&nbsp;second&nbsp;concentration&nbsp;dataset.<br>
+air_pollutant&nbsp;(string):&nbsp;&nbsp;Common&nbsp;column&nbsp;name&nbsp;in&nbsp;both&nbsp;dataframes&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;calculate&nbsp;the&nbsp;difference&nbsp;in&nbsp;concentrations.<br>
+filename&nbsp;(string):&nbsp;Filename&nbsp;for&nbsp;the&nbsp;visualisation&nbsp;that&nbsp;is&nbsp;outputted&nbsp;in&nbsp;the&nbsp;environmental_insights_visulisations&nbsp;directory</span></dd></dl>
+ <dl><dt><a name="-change_in_concentration_line"><strong>change_in_concentration_line</strong></a>(air_pollutant, baseline_list, change_list, days, hours_covered, filename)</dt><dd><span class="code">Visualisation&nbsp;the&nbsp;change&nbsp;in&nbsp;concentrations&nbsp;for&nbsp;two&nbsp;datasets&nbsp;of&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;in&nbsp;a&nbsp;line&nbsp;graph.<br>
+&nbsp;<br>
+Parameters:<br>
+Parameters:<br>
+air_pollutant&nbsp;(string):&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;air&nbsp;pollutant&nbsp;to&nbsp;plot,<br>
+baseline_list&nbsp;(list):&nbsp;List&nbsp;of&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;for&nbsp;the&nbsp;baseline&nbsp;scenario.<br>
+change_list&nbsp;(list):&nbsp;List&nbsp;of&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;for&nbsp;the&nbsp;future&nbsp;scenario.<br>
+days&nbsp;(list):&nbsp;The&nbsp;days&nbsp;the&nbsp;lists&nbsp;covers.<br>
+hours_covered&nbsp;(list):&nbsp;The&nbsp;house&nbsp;the&nbsp;list&nbsp;covers.<br>
+filename&nbsp;(string):&nbsp;Filename&nbsp;for&nbsp;the&nbsp;visualisation&nbsp;that&nbsp;is&nbsp;outputted&nbsp;in&nbsp;the&nbsp;environmental_insights_visulisations&nbsp;directory</span></dd></dl>
+ <dl><dt><a name="-change_in_concentrations_visulisation"><strong>change_in_concentrations_visulisation</strong></a>(first_dataframe, second_dataframe, air_pollutant, filename)</dt><dd><span class="code">Visualisation&nbsp;the&nbsp;change&nbsp;in&nbsp;concentrations&nbsp;for&nbsp;two&nbsp;datasets&nbsp;of&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;based&nbsp;on&nbsp;actual&nbsp;concentrations.<br>
+&nbsp;<br>
+Parameters:<br>
+Parameters:<br>
+first_dataframe&nbsp;(DataFrame):&nbsp;The&nbsp;first&nbsp;concentration&nbsp;dataset.<br>
+second_dataframe&nbsp;(DataFrame):&nbsp;The&nbsp;second&nbsp;concentration&nbsp;dataset.<br>
+air_pollutant&nbsp;(string):&nbsp;&nbsp;Common&nbsp;column&nbsp;name&nbsp;in&nbsp;both&nbsp;dataframes&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;calculate&nbsp;the&nbsp;difference&nbsp;in&nbsp;concentrations.<br>
+filename&nbsp;(string):&nbsp;Filename&nbsp;for&nbsp;the&nbsp;visualisation&nbsp;that&nbsp;is&nbsp;outputted&nbsp;in&nbsp;the&nbsp;environmental_insights_visulisations&nbsp;directory</span></dd></dl>
+ <dl><dt><a name="-visualise_air_pollution_daily_air_quality_bands"><strong>visualise_air_pollution_daily_air_quality_bands</strong></a>(air_pollution_GDF, aqi_to_plot, filename)</dt><dd><span class="code">Visualise&nbsp;air_pollution_GDF&nbsp;with&nbsp;the&nbsp;UK&nbsp;Daily&nbsp;Air&nbsp;Quality&nbsp;Index&nbsp;(<a href="https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info">https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info</a>)&nbsp;using&nbsp;the&nbsp;bands&nbsp;and&nbsp;standard&nbsp;color&nbsp;codes.<br>
+&nbsp;<br>
+Parameters:<br>
+air_pollution_GDF&nbsp;(dataframe):&nbsp;A&nbsp;dataframe&nbsp;of&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;added&nbsp;onto<br>
+aqi_to_plot&nbsp;(string):&nbsp;Name&nbsp;of&nbsp;the&nbsp;column&nbsp;within&nbsp;air_pollution_GDF&nbsp;that&nbsp;has&nbsp;the&nbsp;bands&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;plotted.<br>
+filename&nbsp;(string):&nbsp;Filename&nbsp;for&nbsp;the&nbsp;visualisation&nbsp;that&nbsp;is&nbsp;outputted&nbsp;in&nbsp;the&nbsp;environmental_insights_visulisations&nbsp;directory</span></dd></dl>
+ <dl><dt><a name="-visualise_air_pollution_daily_air_quality_index"><strong>visualise_air_pollution_daily_air_quality_index</strong></a>(air_pollution_GDF, aqi_to_plot, filename)</dt><dd><span class="code">Visualise&nbsp;air_pollution_GDF&nbsp;with&nbsp;the&nbsp;UK&nbsp;Daily&nbsp;Air&nbsp;Quality&nbsp;Index&nbsp;(<a href="https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info">https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info</a>)&nbsp;using&nbsp;the&nbsp;indiviudal&nbsp;index&nbsp;bounds&nbsp;and&nbsp;standard&nbsp;color&nbsp;codes.<br>
+&nbsp;<br>
+Parameters:<br>
+air_pollution_GDF&nbsp;(dataframe):&nbsp;A&nbsp;dataframe&nbsp;of&nbsp;the&nbsp;air&nbsp;pollution&nbsp;concentrations&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;added&nbsp;onto<br>
+aqi_to_plot&nbsp;(string):&nbsp;Name&nbsp;of&nbsp;the&nbsp;column&nbsp;within&nbsp;air_pollution_GDF&nbsp;that&nbsp;has&nbsp;the&nbsp;indexes&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;plotted.<br>
+filename&nbsp;(string):&nbsp;Filename&nbsp;for&nbsp;the&nbsp;visualisation&nbsp;that&nbsp;is&nbsp;outputted&nbsp;in&nbsp;the&nbsp;environmental_insights_visulisations&nbsp;directory</span></dd></dl>
+</td></tr></table>
+</body></html>
