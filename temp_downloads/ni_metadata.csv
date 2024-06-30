@@ -1,0 +1,318 @@
+site_id,site_name,location_type,latitude,longitude,parameter,Parameter_name,start_date,end_date,ratified_to,zone,agglomeration,local_authority
+ANT1,Antrim Greystone Estate,Urban Background,54.7099,-6.188552,SO2,Sulphur dioxide,2004-11-25,2010-06-18,2010-06-18,Northern Ireland,NA_character_,Antrim and Newtownabbey
+ARDS,Ards Glen community centre,Urban Background,54.599072,-5.699291,SO2,Sulphur dioxide,2003-03-01,2006-04-10,2006-03-15,Northern Ireland,NA_character_,Ards and North Down
+ARDS,Ards Glen community centre,Urban Background,54.599072,-5.699291,PM10,PM10 particulate matter (Hourly measured),2003-03-01,2006-04-10,2006-03-15,Northern Ireland,NA_character_,Ards and North Down
+ARD2,Ards Leisure Centre,Urban Background,54.597019,-5.703319,SO2,Sulphur dioxide,2006-04-11,2010-04-06,2010-04-06,Northern Ireland,NA_character_,Ards and North Down
+ARD2,Ards Leisure Centre,Urban Background,54.597019,-5.703319,PM10,PM10 particulate matter (Hourly measured),2006-04-11,2011-10-25,2011-10-25,Northern Ireland,NA_character_,Ards and North Down
+ARM2,Armagh,unknown unknown,54.34214,-6.65771,PM10,PM10 particulate matter (Hourly measured),1999-01-01,1999-12-31,1999-12-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM4,Armagh Dobbin Street,Urban Background,54.353345,-6.651961,SO2,Sulphur dioxide,2003-02-18,2005-03-17,2005-03-17,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,NO,Nitric oxide,2005-01-01,ongoing,2024-03-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,NO2,Nitrogen dioxide,2005-01-01,ongoing,2024-03-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2005-01-01,ongoing,2024-03-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,PM10,PM10 particulate matter (Hourly measured),2005-01-01,ongoing,2024-03-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,NV10,Non-volatile PM10 (Hourly measured),2010-09-03,2020-02-06,2020-02-06,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,V10,Volatile PM10 (Hourly measured),2010-09-03,2020-02-06,2020-02-06,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM5,Armagh Lonsdale Road,Urban Traffic,54.353728,-6.654558,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+ARM3,Armagh Shambles Yard,unknown unknown,54.34214,-6.65771,PM10,PM10 particulate matter (Hourly measured),1999-12-01,2000-01-24,2000-01-24,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,NO,Nitric oxide,2017-04-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,NO2,Nitrogen dioxide,2017-04-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2017-04-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,wd,Modelled Wind Direction,2017-04-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,ws,Modelled Wind Speed,2017-04-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BAAR,Ballymena Antrim Road,Urban Traffic,54.851491,-6.274961,temp,Modelled Temperature,2017-04-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,NO,Nitric oxide,2016-05-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,NO2,Nitrogen dioxide,2016-05-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2016-05-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,SO2,Sulphur dioxide,2003-04-01,ongoing,2024-03-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,PM10,PM10 particulate matter (Hourly measured),2003-04-01,ongoing,2023-12-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,NV10,Non-volatile PM10 (Hourly measured),2008-09-24,2017-11-28,2017-11-28,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,V10,Volatile PM10 (Hourly measured),2008-09-24,2017-11-28,2017-11-28,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,PM2.5,PM2.5 particulate matter (Hourly measured),2021-06-01,ongoing,2023-12-31,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALY,Ballymena Ballykeel,Urban Background,54.861595,-6.250873,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,NO,Nitric oxide,2003-03-01,2015-09-30,2015-09-30,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,NO2,Nitrogen dioxide,2003-03-01,2015-09-30,2015-09-30,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-03-01,2015-09-30,2015-09-30,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,wd,Modelled Wind Direction,2010-08-01,2015-09-30,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,ws,Modelled Wind Speed,2010-08-01,2015-09-30,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BALN,Ballymena North Road,Urban Traffic,54.863252,-6.277772,temp,Modelled Temperature,2010-08-01,2015-09-30,Never,Northern Ireland,NA_character_,Mid and East Antrim
+BMON,Ballymoney Glebeside Estate,Urban Background,55.075312,-6.5088,PM10,PM10 particulate matter (Hourly measured),2004-01-01,2010-02-11,2010-02-11,Northern Ireland,NA_character_,Causeway Coast and Glens
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,O3,Ozone,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,NO,Nitric oxide,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,NO2,Nitrogen dioxide,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,NOXasNO2,Nitrogen oxides as nitrogen dioxide,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,SO2,Sulphur dioxide,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,CO,Carbon monoxide,1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,PM10,PM10 particulate matter (Hourly measured),1992-03-08,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,NV10,Non-volatile PM10 (Hourly measured),2008-10-01,2019-09-16,2019-09-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,V10,Volatile PM10 (Hourly measured),2008-10-01,2019-09-16,2019-09-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,PM2.5,PM2.5 particulate matter (Hourly measured),2008-10-01,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,NV2.5,Non-volatile PM2.5 (Hourly measured),2008-10-01,2019-09-16,2019-09-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,V2.5,Volatile PM2.5 (Hourly measured),2008-10-01,2019-09-16,2019-09-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL2,Belfast Centre,Urban Traffic,54.59965,-5.928833,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL4,Belfast Clara St,Suburban Background,54.591256,-5.89546,PM10,PM10 particulate matter (Hourly measured),1998-06-01,2007-09-30,2007-09-30,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE1,Belfast Clara St (Local Authority),Suburban Background,54.591291,-5.895113,PM2.5,PM2.5 particulate matter (Hourly measured),2009-02-23,2010-03-31,2010-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE1,Belfast Clara St (Local Authority),Suburban Background,54.591291,-5.895113,NV2.5,Non-volatile PM2.5 (Hourly measured),2009-02-23,2010-03-31,2010-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE1,Belfast Clara St (Local Authority),Suburban Background,54.591291,-5.895113,V2.5,Volatile PM2.5 (Hourly measured),2009-02-23,2010-03-31,2010-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL,Belfast East,Urban Background,54.59653,-5.901667,SO2,Sulphur dioxide,1989-09-06,2007-09-30,2007-09-30,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,NO,Nitric oxide,2002-04-01,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,NO2,Nitrogen dioxide,2002-04-01,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2002-04-01,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL5,Belfast Newtownards Road,Urban Traffic,54.595175,-5.867022,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,NO,Nitric oxide,2006-05-24,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,NO2,Nitrogen dioxide,2006-05-24,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2006-05-24,ongoing,2024-01-10,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL0,Belfast Ormeau Road,Urban Traffic,54.587516,-5.92378,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,ETHANE,ethane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,ETHENE,ethene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,ETHYNE,ethyne,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,PROPANE,propane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,PROPENE,propene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,iBUTANE,iso-butane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,nBUTANE,n-butane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,1BUTENE,1-butene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,t2BUTENE,trans-2-butene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,c2BUTENE,cis-2-butene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,iPENTANE,iso-pentane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,nPENTANE,n-pentane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,13BDIENE,"1,3-butadiene",1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,t2PENTEN,trans-2-pentene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,c2PENTEN,cis-2-pentene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,MEPENT,methylpentane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,ISOPRENE,isoprene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,nHEXANE,n-hexane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,nHEPTANE,n-heptane,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,BENZENE,Benzene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,TOLUENE,toluene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,ETHBENZ,ethylbenzene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,mpXYLENE,m+p-xylene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL3,Belfast South,Urban Background,54.59918,-5.912416,oXYLENE,o-xylene,1993-08-01,2000-12-31,2000-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,NO,Nitric oxide,2006-04-13,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,NO2,Nitrogen dioxide,2006-04-13,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2006-04-13,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,PM10,PM10 particulate matter (Hourly measured),2006-04-13,ongoing,2024-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,NV10,Non-volatile PM10 (Hourly measured),2009-03-08,2014-06-16,2014-06-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,V10,Volatile PM10 (Hourly measured),2009-03-08,2014-06-16,2014-06-16,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL1,Belfast Stockman's Lane,Urban Traffic,54.572586,-5.974944,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL8,Belfast Westlink,unknown unknown,54.59985,-5.928833,NO,Nitric oxide,2002-04-04,2006-03-01,2006-03-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL8,Belfast Westlink,unknown unknown,54.59985,-5.928833,NO2,Nitrogen dioxide,2002-04-04,2006-03-01,2006-03-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL8,Belfast Westlink,unknown unknown,54.59985,-5.928833,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2002-04-04,2006-03-01,2006-03-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BEL8,Belfast Westlink,unknown unknown,54.59985,-5.928833,PM10,PM10 particulate matter (Hourly measured),2002-04-04,2006-03-01,2006-02-28,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,NO,Nitric oxide,2010-03-03,ongoing,2024-01-11,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,NO2,Nitrogen dioxide,2010-03-03,ongoing,2024-01-11,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2010-03-03,ongoing,2024-01-11,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,PM10,PM10 particulate matter (Hourly measured),2010-03-03,2014-06-17,2014-06-17,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+BE2,Belfast Westlink Roden Street,Urban Traffic,54.591753,-5.949517,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CRK1,Carrickfergus Rosebrook Avenue,Urban Background,54.720277,-5.810608,SO2,Sulphur dioxide,2002-07-01,2011-08-01,2011-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Mid and East Antrim
+CRK1,Carrickfergus Rosebrook Avenue,Urban Background,54.720277,-5.810608,PM10,PM10 particulate matter (Hourly measured),2002-07-01,2010-04-12,2011-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Mid and East Antrim
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,NO,Nitric oxide,2007-02-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,NO2,Nitrogen dioxide,2007-02-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2007-02-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,PM10,PM10 particulate matter (Hourly measured),2007-02-01,2012-10-18,2012-10-18,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS3,Castlereagh Dundonald,Urban Traffic,54.594577,-5.803313,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+CAS1,Castlereagh Espie Way,unknown unknown,54.577526,-5.876727,SO2,Sulphur dioxide,2002-04-01,2006-12-14,2006-12-14,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CAS1,Castlereagh Espie Way,unknown unknown,54.577526,-5.876727,PM10,PM10 particulate matter (Hourly measured),2002-04-01,2006-12-14,2006-12-14,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CAS2,Castlereagh Lough View Drive,Urban Traffic,54.566466,-5.901972,NO,Nitric oxide,2002-04-01,2011-07-31,2011-06-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CAS2,Castlereagh Lough View Drive,Urban Traffic,54.566466,-5.901972,NO2,Nitrogen dioxide,2002-04-01,2011-07-31,2011-06-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CAS2,Castlereagh Lough View Drive,Urban Traffic,54.566466,-5.901972,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2002-04-01,2011-07-31,2011-06-01,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+CAS2,Castlereagh Lough View Drive,Urban Traffic,54.566466,-5.901972,PM10,PM10 particulate matter (Hourly measured),2002-04-01,2011-07-31,2011-07-31,Northern Ireland,Belfast Metropolitan Urban Area,Belfast
+COOK,Cookstown,Urban Background,54.63927,-6.751098,SO2,Sulphur dioxide,2004-01-01,2011-07-31,2010-12-31,Northern Ireland,NA_character_,Mid Ulster
+COOK,Cookstown,Urban Background,54.63927,-6.751098,PM10,PM10 particulate matter (Hourly measured),2004-01-01,2011-07-31,2010-12-31,Northern Ireland,NA_character_,Mid Ulster
+CRAI,Craigavon,Urban Background,54.469803,-6.336554,PM10,PM10 particulate matter (Hourly measured),2000-01-01,2000-12-31,2000-12-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+CRA2,Craigavon Castle Lane,Urban Traffic,54.462567,-6.332178,NO,Nitric oxide,2002-04-01,2006-10-31,2006-10-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+CRA2,Craigavon Castle Lane,Urban Traffic,54.462567,-6.332178,NO2,Nitrogen dioxide,2002-04-01,2006-10-31,2006-10-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+CRA2,Craigavon Castle Lane,Urban Traffic,54.462567,-6.332178,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2002-04-01,2006-10-31,2006-10-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+CRA1,Craigavon Lord Lurgan Park,Urban Background,54.44449,-6.394042,SO2,Sulphur dioxide,2002-04-01,2006-10-31,2006-10-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+CRA1,Craigavon Lord Lurgan Park,Urban Background,54.44449,-6.394042,PM10,PM10 particulate matter (Hourly measured),2002-04-01,2006-10-31,2006-08-31,Northern Ireland,NA_character_,"Armagh, Banbridge and Craigavon"
+DER7,Derry Ballyartan Road,Urban Industrial,54.9923,-7.325134,PM10,PM10 particulate matter (Hourly measured),2006-07-13,2007-02-06,2007-02-06,Northern Ireland,NA_character_,Derry and Strabane
+DER3,Derry Brandywell,Urban Background,54.992336,-7.332127,SO2,Sulphur dioxide,2002-04-01,2011-02-28,2011-02-28,Northern Ireland,NA_character_,Derry and Strabane
+DER3,Derry Brandywell,Urban Background,54.992336,-7.332127,PM10,PM10 particulate matter (Hourly measured),2002-04-01,2011-02-28,2011-02-28,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,O3,Ozone,1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,NO,Nitric oxide,1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,NO2,Nitrogen dioxide,1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,NOXasNO2,Nitrogen oxides as nitrogen dioxide,1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,SO2,Sulphur dioxide,1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,CO,Carbon monoxide,1997-04-29,2007-09-30,2007-09-30,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,PM10,PM10 particulate matter (Hourly measured),1997-04-29,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,NV10,Non-volatile PM10 (Hourly measured),2008-02-21,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,V10,Volatile PM10 (Hourly measured),2008-02-21,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,PM2.5,PM2.5 particulate matter (Hourly measured),2008-02-20,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,NV2.5,Non-volatile PM2.5 (Hourly measured),2008-02-21,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,V2.5,Volatile PM2.5 (Hourly measured),2008-02-21,2016-02-29,2016-02-29,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,wd,Modelled Wind Direction,2010-08-01,2016-02-29,Never,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,ws,Modelled Wind Speed,2010-08-01,2016-02-29,Never,Northern Ireland,NA_character_,Derry and Strabane
+DERY,Derry Brooke Park,Urban Background,55.001225,-7.329115,temp,Modelled Temperature,2010-08-01,2016-02-29,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER5,Derry Claudy,Urban Background,55.001225,-7.329115,PM10,PM10 particulate matter (Hourly measured),2005-11-07,2006-05-23,2006-05-23,Northern Ireland,NA_character_,Derry and Strabane
+DER8,Derry Culmore Point Road,Urban Traffic,55.001225,-7.329315,PM10,PM10 particulate matter (Hourly measured),2007-12-12,2008-12-15,2008-12-15,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,NO,Nitric oxide,2003-11-07,ongoing,2024-01-10,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,NO2,Nitrogen dioxide,2003-11-07,ongoing,2024-01-10,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-11-07,ongoing,2024-01-10,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER4,Derry Dale's Corner,Urban Traffic,54.99642,-7.310163,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,NO,Nitric oxide,2011-11-08,2015-05-31,2015-05-31,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,NO2,Nitrogen dioxide,2011-11-08,2015-05-31,2015-05-31,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2011-11-08,2015-05-31,2015-05-31,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,wd,Modelled Wind Direction,2011-11-08,2015-05-31,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,ws,Modelled Wind Speed,2011-11-08,2015-05-31,Never,Northern Ireland,NA_character_,Derry and Strabane
+DER9,Derry Marlborough Street,Urban Traffic,54.999994,-7.330226,temp,Modelled Temperature,2011-11-08,2015-05-31,Never,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,O3,Ozone,2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,NO,Nitric oxide,2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,NO2,Nitrogen dioxide,2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,SO2,Sulphur dioxide,2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,PM10,PM10 particulate matter (Hourly measured),2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,NV10,Non-volatile PM10 (Hourly measured),2016-03-21,2019-10-22,2019-10-22,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,V10,Volatile PM10 (Hourly measured),2016-03-21,2019-10-22,2019-10-22,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,PM2.5,PM2.5 particulate matter (Hourly measured),2016-03-21,ongoing,2024-03-31,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,NV2.5,Non-volatile PM2.5 (Hourly measured),2016-03-21,2019-10-22,2019-10-22,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,V2.5,Volatile PM2.5 (Hourly measured),2016-03-21,2019-10-22,2019-10-22,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,wd,Modelled Wind Direction,2016-03-21,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,ws,Modelled Wind Speed,2016-03-21,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DERR,Derry Rosemount,Urban Background,55.002818,-7.331179,temp,Modelled Temperature,2016-03-21,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,NO,Nitric oxide,2010-07-01,ongoing,2023-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,NO2,Nitrogen dioxide,2010-07-01,ongoing,2023-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2010-07-01,ongoing,2023-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DPK1,Downpatrick Roadside,Urban Traffic,54.328443,-5.715743,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+DUN,Dungannon,unknown unknown,54.513719,-6.761873,PM10,PM10 particulate matter (Hourly measured),1998-01-01,1998-12-31,Never,Northern Ireland,NA_character_,Mid Ulster
+DUNG,Dungannon Lambfields,Urban Background,54.513732,-6.761833,SO2,Sulphur dioxide,2005-01-01,2009-01-20,2009-01-20,Northern Ireland,NA_character_,Mid Ulster
+DUNG,Dungannon Lambfields,Urban Background,54.513732,-6.761833,PM10,PM10 particulate matter (Hourly measured),2005-01-01,2009-01-20,2009-01-20,Northern Ireland,NA_character_,Mid Ulster
+KILR,Kilroot,unknown unknown,54.728906,-5.761938,PM10,PM10 particulate matter (Hourly measured),2001-06-01,2002-07-15,2002-07-15,Northern Ireland,NA_character_,Mid and East Antrim
+LAR2,Larne Craigyhill,Urban Background,54.857438,-5.838513,SO2,Sulphur dioxide,2006-01-26,2010-04-30,2010-06-14,Northern Ireland,NA_character_,Mid and East Antrim
+LAR2,Larne Craigyhill,Urban Background,54.857438,-5.838513,PM10,PM10 particulate matter (Hourly measured),2006-01-26,2010-04-12,2010-04-12,Northern Ireland,NA_character_,Mid and East Antrim
+LARN,Larne Harbour,Urban Background,54.84132,-5.801354,SO2,Sulphur dioxide,2003-03-01,2005-12-03,2005-12-03,Northern Ireland,NA_character_,Mid and East Antrim
+LARN,Larne Harbour,Urban Background,54.84132,-5.801354,PM10,PM10 particulate matter (Hourly measured),2003-03-01,2005-12-03,2005-12-03,Northern Ireland,NA_character_,Mid and East Antrim
+LVDY,Limavady Coolessan,unknown unknown,55.038196,-6.941465,PM10,PM10 particulate matter (Hourly measured),2003-03-01,2005-12-03,2005-04-11,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,NO,Nitric oxide,2010-08-05,ongoing,2024-01-31,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,NO2,Nitrogen dioxide,2010-08-05,ongoing,2024-01-31,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2010-08-05,ongoing,2024-01-31,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,wd,Modelled Wind Direction,2010-08-05,ongoing,Never,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,ws,Modelled Wind Speed,2010-08-05,ongoing,Never,Northern Ireland,NA_character_,Causeway Coast and Glens
+LVD2,Limavady Dungiven,Urban Traffic,54.928407,-6.92681,temp,Modelled Temperature,2010-08-05,ongoing,Never,Northern Ireland,NA_character_,Causeway Coast and Glens
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,SO2,Sulphur dioxide,2006-09-01,2012-06-27,2012-06-27,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,PM10,PM10 particulate matter (Hourly measured),2003-10-31,2012-06-27,2012-06-27,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,NV10,Non-volatile PM10 (Hourly measured),2007-12-19,2012-06-27,2012-06-27,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,V10,Volatile PM10 (Hourly measured),2007-12-19,2012-06-27,2012-06-27,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,PM2.5,PM2.5 particulate matter (Hourly measured),2007-12-01,2012-06-27,2012-06-27,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,NV2.5,Non-volatile PM2.5 (Hourly measured),2008-02-07,2011-08-31,2011-08-31,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS3,Lisburn Dunmurry High School,Urban Background,54.537934,-6.014019,V2.5,Volatile PM2.5 (Hourly measured),2008-02-07,2011-08-31,2011-08-31,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,SO2,Sulphur dioxide,2012-07-06,ongoing,2023-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,PM10,PM10 particulate matter (Hourly measured),2012-07-06,ongoing,2023-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,NV10,Non-volatile PM10 (Hourly measured),2012-07-06,2014-09-01,2014-09-01,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,V10,Volatile PM10 (Hourly measured),2012-07-06,2014-09-01,2014-09-01,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,PM2.5,PM2.5 particulate matter (Hourly measured),2012-07-06,ongoing,2023-12-31,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,NV2.5,Non-volatile PM2.5 (Hourly measured),2012-07-06,2015-06-16,2015-06-16,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,V2.5,Volatile PM2.5 (Hourly measured),2012-07-06,2015-06-16,2015-06-16,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,wd,Modelled Wind Direction,2012-07-06,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,ws,Modelled Wind Speed,2012-07-06,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS5,Lisburn Dunmurry Seymour Hill,Urban Background,54.543516,-6.008608,temp,Modelled Temperature,2012-07-06,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS1,Lisburn Island Civic Centre,Urban Background,54.511894,-6.035822,SO2,Sulphur dioxide,2003-03-01,2006-09-29,2006-09-29,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS1,Lisburn Island Civic Centre,Urban Background,54.511894,-6.035822,PM10,PM10 particulate matter (Hourly measured),2003-03-01,2011-04-30,2011-04-30,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,NO,Nitric oxide,2003-03-01,2013-07-24,2013-07-24,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,NO2,Nitrogen dioxide,2003-03-01,2013-07-24,2013-07-24,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-03-01,2013-07-24,2013-07-24,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,PM10,PM10 particulate matter (Hourly measured),2003-03-01,2010-04-08,2010-04-08,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,wd,Modelled Wind Direction,2010-08-01,2013-07-24,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,ws,Modelled Wind Speed,2010-08-01,2013-07-24,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LIS2,Lisburn Lagan Valley Hospital,Urban Traffic,54.505907,-6.047348,temp,Modelled Temperature,2010-08-01,2013-07-24,Never,Northern Ireland,Belfast Metropolitan Urban Area,Lisburn and Castlereagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,O3,Ozone,1987-04-02,ongoing,2024-03-31,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,PM10,PM10 particulate matter (Hourly measured),1996-10-02,ongoing,2024-03-31,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,NV10,Non-volatile PM10 (Hourly measured),2009-05-15,2018-07-18,2018-07-18,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,V10,Volatile PM10 (Hourly measured),2009-05-15,2018-07-18,2018-07-18,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,PM2.5,PM2.5 particulate matter (Hourly measured),2018-07-18,ongoing,2024-03-31,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Fermanagh and Omagh
+LN,Lough Navar,Rural Background,54.43951,-7.900328,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Fermanagh and Omagh
+NEWR,Newry,unknown unknown,,,PM10,PM10 particulate matter (Hourly measured),1998-07-01,2000-12-31,2000-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,NO,Nitric oxide,2006-05-01,2009-05-18,2009-05-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,NO2,Nitrogen dioxide,2006-05-01,2009-05-18,2009-05-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2006-05-01,2009-05-18,2009-05-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,PM10,PM10 particulate matter (Hourly measured),2006-04-27,2009-05-18,2009-05-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,NV10,Non-volatile PM10 (Hourly measured),2008-04-01,2009-03-02,2009-03-02,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY4,Newry Bridge Street,Urban Traffic,54.16965,-6.339959,V10,Volatile PM10 (Hourly measured),2008-04-01,2009-03-02,2009-03-02,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,NO,Nitric oxide,2009-06-01,ongoing,2024-01-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,NO2,Nitrogen dioxide,2009-06-01,ongoing,2024-01-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2009-06-01,ongoing,2024-01-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,PM10,PM10 particulate matter (Hourly measured),2009-06-01,ongoing,2023-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY5,Newry Canal Street,Urban Traffic,54.180381,-6.33924,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY3,Newry Kilkeel,Urban Background,54.065032,-6.010614,PM10,PM10 particulate matter (Hourly measured),2004-04-22,2006-02-28,2006-02-28,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,NO,Nitric oxide,2001-04-01,2006-03-10,2006-03-10,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,NO2,Nitrogen dioxide,2001-04-01,2006-03-10,2006-03-10,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2001-04-01,2006-03-10,2006-03-10,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,SO2,Sulphur dioxide,2001-04-01,2008-04-03,2008-04-03,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,PM10,PM10 particulate matter (Hourly measured),2001-04-01,2016-04-18,2016-04-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,NV10,Non-volatile PM10 (Hourly measured),2008-03-07,2016-04-18,2016-04-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,V10,Volatile PM10 (Hourly measured),2008-03-07,2016-04-18,2016-04-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,wd,Modelled Wind Direction,2010-08-01,2016-04-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,ws,Modelled Wind Speed,2010-08-01,2016-04-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY2,Newry Monaghan Row,Urban Background,54.178861,-6.348254,temp,Modelled Temperature,2010-08-01,2016-04-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,NO,Nitric oxide,2001-05-01,2014-04-30,2014-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,NO2,Nitrogen dioxide,2001-05-01,2014-04-30,2014-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2001-05-01,2014-04-30,2014-12-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,SO2,Sulphur dioxide,2001-05-01,2008-03-31,2008-03-31,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,PM10,PM10 particulate matter (Hourly measured),2001-05-01,2016-01-18,2016-01-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,NV10,Non-volatile PM10 (Hourly measured),2008-03-28,2016-01-18,2016-01-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,V10,Volatile PM10 (Hourly measured),2008-03-28,2016-01-18,2016-01-18,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,wd,Modelled Wind Direction,2010-08-01,2016-01-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,ws,Modelled Wind Speed,2010-08-01,2016-01-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWY1,Newry Trevor Hill,Urban Traffic,54.177949,-6.336016,temp,Modelled Temperature,2010-08-01,2016-01-18,Never,Northern Ireland,NA_character_,"Newry, Mourne and Down"
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,NO,Nitric oxide,2008-01-28,ongoing,2024-01-05,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,NO2,Nitrogen dioxide,2008-01-28,ongoing,2024-01-05,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2008-01-28,ongoing,2024-01-05,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT5,Newtownabbey Antrim Road,Urban Traffic,54.666013,-5.950219,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT3,Newtownabbey Ballyclare,Urban Background,54.68435,-5.968351,SO2,Sulphur dioxide,2005-02-23,2007-09-25,2007-09-11,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT3,Newtownabbey Ballyclare,Urban Background,54.68435,-5.968351,PM10,PM10 particulate matter (Hourly measured),2005-02-23,2007-09-25,2007-09-11,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT2,Newtownabbey Sandyknowes,Urban Traffic,54.678291,-5.976958,NO,Nitric oxide,2003-04-01,2012-04-02,2012-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT2,Newtownabbey Sandyknowes,Urban Traffic,54.678291,-5.976958,NO2,Nitrogen dioxide,2003-04-01,2012-04-02,2012-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT2,Newtownabbey Sandyknowes,Urban Traffic,54.678291,-5.976958,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-04-01,2012-04-02,2012-03-31,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT1,Newtownabbey Shore Road,Urban Traffic,54.653725,-5.913772,NO,Nitric oxide,2003-04-01,2007-09-18,2007-09-18,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT1,Newtownabbey Shore Road,Urban Traffic,54.653725,-5.913772,NO2,Nitrogen dioxide,2003-04-01,2007-09-18,2007-09-18,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+NWT1,Newtownabbey Shore Road,Urban Traffic,54.653725,-5.913772,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-04-01,2007-09-18,2007-09-18,Northern Ireland,Belfast Metropolitan Urban Area,Antrim and Newtownabbey
+DYS1,Newtownstewart,Urban Background,54.716338,-7.379876,PM10,PM10 particulate matter (Hourly measured),2021-04-08,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+DYS1,Newtownstewart,Urban Background,54.716338,-7.379876,PM2.5,PM2.5 particulate matter (Hourly measured),2022-03-10,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+DYS1,Newtownstewart,Urban Background,54.716338,-7.379876,wd,Modelled Wind Direction,2021-04-08,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DYS1,Newtownstewart,Urban Background,54.716338,-7.379876,ws,Modelled Wind Speed,2021-04-08,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DYS1,Newtownstewart,Urban Background,54.716338,-7.379876,temp,Modelled Temperature,2021-04-08,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+ND1,North Down Bangor,Urban Background,54.655163,-5.678749,SO2,Sulphur dioxide,2003-02-25,2010-04-01,2010-04-01,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND1,North Down Bangor,Urban Background,54.655163,-5.678749,PM10,PM10 particulate matter (Hourly measured),2003-02-25,2011-01-05,2011-01-05,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,NO,Nitric oxide,2003-03-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,NO2,Nitrogen dioxide,2003-03-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,NOXasNO2,Nitrogen oxides as nitrogen dioxide,2003-03-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,PM10,PM10 particulate matter (Hourly measured),2003-03-01,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,PM2.5,PM2.5 particulate matter (Hourly measured),2020-11-16,ongoing,2024-01-09,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+ND2,North Down Holywood A2,Urban Traffic,54.641963,-5.837939,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,Belfast Metropolitan Urban Area,Ards and North Down
+OM,Omagh Tamlaght,unknown unknown,54.596274,-7.347907,PM10,PM10 particulate matter (Hourly measured),2003-09-26,2004-04-10,2004-04-10,Northern Ireland,NA_character_,Fermanagh and Omagh
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,SO2,Sulphur dioxide,2002-04-26,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,PM10,PM10 particulate matter (Hourly measured),2002-04-26,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,PM2.5,PM2.5 particulate matter (Hourly measured),2022-05-10,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,wd,Modelled Wind Direction,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,ws,Modelled Wind Speed,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+SBAN,Strabane Springhill Park,Urban Background,54.821427,-7.453291,temp,Modelled Temperature,2010-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DCSMOB01,Strathfoyle Bawnmore Place,Suburban Background,55.034322,-7.264644,PM10,PM10 particulate matter (Hourly measured),2018-08-01,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+DCSMOB01,Strathfoyle Bawnmore Place,Suburban Background,55.034322,-7.264644,PM2.5,PM2.5 particulate matter (Hourly measured),2022-02-25,ongoing,2023-12-31,Northern Ireland,NA_character_,Derry and Strabane
+DCSMOB01,Strathfoyle Bawnmore Place,Suburban Background,55.034322,-7.264644,wd,Modelled Wind Direction,2018-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DCSMOB01,Strathfoyle Bawnmore Place,Suburban Background,55.034322,-7.264644,ws,Modelled Wind Speed,2018-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
+DCSMOB01,Strathfoyle Bawnmore Place,Suburban Background,55.034322,-7.264644,temp,Modelled Temperature,2018-08-01,ongoing,Never,Northern Ireland,NA_character_,Derry and Strabane
