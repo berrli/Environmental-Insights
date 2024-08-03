@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x'  # Specify the Python version you need
+        python-version: '3.12'  # Use the correct Python version
 
     - name: Install dependencies
       run: |
@@ -28,4 +28,4 @@ jobs:
         pip install pytest
 
     - name: Run tests
-      run: pytest ./tests
+      run: pytest ./tests  # Ensure the correct path is specified
