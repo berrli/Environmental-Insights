@@ -7,3 +7,4 @@ overpy==0.6
 shapely==2.0.2
 pyarrow==14.0.1
 pyogrio==0.7.2
+pytest==8.3.2  # Ensure pytest is included
