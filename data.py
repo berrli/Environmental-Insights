@@ -447,7 +447,7 @@ def get_global_grids():
     GeoDataFrame: A GeoDataFrame of the polygons for each of the grids in the Global Model and unique ID.
     """
     # Construct the full path to the data file
-    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "worldGrids_025_landGrids.gpkg")
+    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "025latlong_world_grids.gpkg")
     global_grids = gpd.read_file(grid_filename)
     global_grids = global_grids.rename(columns={"id": "Global Model Grid ID"})
     return global_grids
