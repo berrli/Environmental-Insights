@@ -432,7 +432,7 @@ def get_uk_grids():
     GeoDataFrame: A GeoDataFrame of the polygons for each of the grids in the UK Model alongside their centroid and unique ID.
     """
     # Construct the full path to the data file
-    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "1000mLandGridsEngland.gpkg")
+    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "1km_uk_grids.gpkg.gpkg")
     uk_grids = gpd.read_file(grid_filename)
     uk_grids["geometry Centroid"] = uk_grids["geometry"].centroid
     uk_grids = uk_grids.rename(columns={"Grid ID": "UK Model Grid ID"})
