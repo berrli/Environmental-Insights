@@ -1,6 +1,7 @@
 import unittest
 import sys
 sys.path.append("../") # Adds higher directory to python modules path.
+sys.path.append("./") # Adds higher directory to python modules path.
 import air_pollution_functions as ei_air_pollution_functions
 import data as ei_data
 import models as ei_models
