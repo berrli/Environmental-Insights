@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib import colors
 import numpy as np
-from . import variables
+import environmental_insights.variables as variables  # Absolute import
 from pathlib import Path
 
 pd.options.mode.chained_assignment = None  # default='warn'

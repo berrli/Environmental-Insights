@@ -1,7 +1,7 @@
 import pickle
 import os
 import pandas as pd
-from . import variables
+import environmental_insights.variables as variables  # Absolute import
 import numpy as np
 
 

@@ -1,6 +1,9 @@
 import unittest
 import sys
-sys.path.append("../environmental_insights/")  # Adds higher directory to python modules path.
+import os
+
+# Add the parent directory to the system path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../environmental_insights')))
 import air_pollution_functions as ei_air_pollution_functions
 import data as ei_data
 
