@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 from rpy2 import robjects
 
+
 def import_monitoring_station_data(site, pollutant, years, source):
     """
     Import monitoring station data from specified source and years.
@@ -112,8 +113,6 @@ def monitoring_station_meta_data(monitoring_network="aurn"):
     DataFrame: A pandas DataFrame containing the metadata for the specified monitoring network,
                or None if the download fails.
     """
-
-    
 
     # Dictionary mapping monitoring networks to their metadata URLs
     source_dict = {
