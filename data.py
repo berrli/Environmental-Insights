@@ -13,6 +13,7 @@ pd.options.mode.chained_assignment = None  # default='warn'
 # Get the directory where this script is located
 script_dir = os.path.dirname(__file__)
 
+
 def download_file_data(filename):
     """
     Checks if a file that has been requested has been downloaded and if it has then it will download the file.
@@ -23,7 +24,9 @@ def download_file_data(filename):
     print("Checking existence of file: " + str(filename))
 
 
-def air_pollution_concentration_typical_day_real_time_united_kingdom(month, day_of_Week, hour):
+def air_pollution_concentration_typical_day_real_time_united_kingdom(
+    month, day_of_Week, hour
+):
     """
     Retrieve the typical day complete dataset for the UK for a given time.
 
@@ -36,17 +39,27 @@ def air_pollution_concentration_typical_day_real_time_united_kingdom(month, day_
     DataFrame: A DataFrame of the typical dataset for the UK for a given time of interest.
     """
     # Construct the full path to the data file
-    desired_filename = os.path.join(script_dir, "environmental_insights_data", "air_pollution", "uk_typical_day", f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather")
+    desired_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "air_pollution",
+        "uk_typical_day",
+        f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather",
+    )
     if not os.path.isfile(desired_filename):
         # download_file_data(desired_filename)
         pass
 
     air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(columns={"Grid ID": "UK Model Grid ID"})
+    air_pollution_data = air_pollution_data.rename(
+        columns={"Grid ID": "UK Model Grid ID"}
+    )
     return air_pollution_data
 
 
-def air_pollution_concentration_nearest_point_typical_day_united_kingdom(month, day_of_Week, hour, latitude, longitude, uk_grids):
+def air_pollution_concentration_nearest_point_typical_day_united_kingdom(
+    month, day_of_Week, hour, latitude, longitude, uk_grids
+):
     """
     Retrieve a single air pollution concentration data point predicted based on the UK data, based on the closest point given by the latitude and longitude.
 
@@ -62,13 +75,21 @@ def air_pollution_concentration_nearest_point_typical_day_united_kingdom(month, 
     DataFrame: A DataFrame of the nearest point in the data at the given timestamp.
     """
     # Construct the full path to the data file
-    desired_filename = os.path.join(script_dir, "environmental_insights_data", "air_pollution", "uk_typical_day", f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather")
+    desired_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "air_pollution",
+        "uk_typical_day",
+        f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather",
+    )
     if not os.path.isfile(desired_filename):
         # download_file_data(desired_filename)
         pass
 
     air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(columns={"Grid ID": "UK Model Grid ID"})
+    air_pollution_data = air_pollution_data.rename(
+        columns={"Grid ID": "UK Model Grid ID"}
+    )
     air_pollution_data = uk_grids.merge(air_pollution_data, on="UK Model Grid ID")
     air_pollution_data["geometry"] = air_pollution_data["geometry"].centroid
     air_pollution_data = air_pollution_data.to_crs(4326)
@@ -83,7 +104,9 @@ def air_pollution_concentration_nearest_point_typical_day_united_kingdom(month, 
     # Retrieve the closest points
     closest_points = pd.DataFrame(air_pollution_data.iloc[idx]).T
     closest_points["Distance"] = distance
-    closest_points = closest_points.rename(columns={"Latitude": "Prediction Latitude", "Longitude": "Prediction Longitude"})
+    closest_points = closest_points.rename(
+        columns={"Latitude": "Prediction Latitude", "Longitude": "Prediction Longitude"}
+    )
     closest_points["Requested Latitude"] = latitude
     closest_points["Requested Longitude"] = longitude
     closest_points = closest_points.drop(columns=["UK Model Grid ID", "geometry"])
@@ -101,16 +124,26 @@ def air_pollution_concentration_complete_set_real_time_united_kingdom(time):
     DataFrame: A DataFrame of the dataset for the UK for a given timestamp.
     """
     # Construct the full path to the data file
-    desired_filename = os.path.join(script_dir, "environmental_insights_data", "air_pollution", "uk_complete_set", f"{time}.feather")
+    desired_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "air_pollution",
+        "uk_complete_set",
+        f"{time}.feather",
+    )
     if not os.path.isfile(desired_filename):
         download_file_data(time)
 
     air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(columns={"Grid ID": "UK Model Grid ID"})
+    air_pollution_data = air_pollution_data.rename(
+        columns={"Grid ID": "UK Model Grid ID"}
+    )
     return air_pollution_data
 
 
-def air_pollution_concentration_nearest_point_real_time_united_kingdom(latitude, longitude, time, uk_grids):
+def air_pollution_concentration_nearest_point_real_time_united_kingdom(
+    latitude, longitude, time, uk_grids
+):
     """
     Retrieve a single air pollution concentration data point predicted based on the UK data, based on the closest point given by the latitude and longitude.
 
@@ -123,15 +156,30 @@ def air_pollution_concentration_nearest_point_real_time_united_kingdom(latitude,
     Returns:
     DataFrame: A DataFrame of the nearest point in the data at the given timestamp.
     """
-    print("Accessing air pollution concentration at: Latitude: " + str(latitude) + " Longitude: " + str(longitude) + " Time: " + str(time))
+    print(
+        "Accessing air pollution concentration at: Latitude: "
+        + str(latitude)
+        + " Longitude: "
+        + str(longitude)
+        + " Time: "
+        + str(time)
+    )
 
     # Construct the full path to the data file
-    desired_filename = os.path.join(script_dir, "environmental_insights_data", "air_pollution", "uk_complete_set", f"{time}.feather")
+    desired_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "air_pollution",
+        "uk_complete_set",
+        f"{time}.feather",
+    )
     if not os.path.isfile(desired_filename):
         download_file_data(time)
 
     air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(columns={"Grid ID": "UK Model Grid ID"})
+    air_pollution_data = air_pollution_data.rename(
+        columns={"Grid ID": "UK Model Grid ID"}
+    )
     air_pollution_data = uk_grids.merge(air_pollution_data, on="UK Model Grid ID")
     air_pollution_data["geometry"] = air_pollution_data["geometry"].centroid
 
@@ -147,7 +195,9 @@ def air_pollution_concentration_nearest_point_real_time_united_kingdom(latitude,
     # Retrieve the closest points
     closest_points = pd.DataFrame(air_pollution_data.iloc[idx]).T
     closest_points["Distance"] = distance
-    closest_points = closest_points.rename(columns={"Latitude": "Prediction Latitude", "Longitude": "Prediction Longitude"})
+    closest_points = closest_points.rename(
+        columns={"Latitude": "Prediction Latitude", "Longitude": "Prediction Longitude"}
+    )
     closest_points["Requested Latitude"] = latitude
     closest_points["Requested Longitude"] = longitude
     closest_points = closest_points.drop(columns=["UK Model Grid ID", "geometry"])
@@ -165,12 +215,20 @@ def air_pollution_concentration_complete_set_real_time_global(time):
     DataFrame: A DataFrame of the dataset for the global model for a given timestamp.
     """
     # Construct the full path to the data file
-    desired_filename = os.path.join(script_dir, "environmental_insights_data", "air_pollution", "global_complete_set", f"{time}.feather")
+    desired_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "air_pollution",
+        "global_complete_set",
+        f"{time}.feather",
+    )
     if not os.path.isfile(desired_filename):
         download_file_data(time)
 
     air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(columns={"id": "Global Model Grid ID"})
+    air_pollution_data = air_pollution_data.rename(
+        columns={"id": "Global Model Grid ID"}
+    )
     return air_pollution_data
 
 
@@ -225,7 +283,7 @@ def get_amenities_as_geodataframe(amenity_type, min_lat, min_lon, max_lat, max_l
 
     # Convert lists to a GeoDataFrame
     geometry = [Point(xy) for xy in zip(lons, lats)]
-    gdf = gpd.GeoDataFrame({'name': names, 'geometry': geometry})
+    gdf = gpd.GeoDataFrame({"name": names, "geometry": geometry})
 
     return gdf
 
@@ -270,7 +328,7 @@ def get_highways_as_geodataframe(highway_type, min_lat, min_lon, max_lat, max_lo
             print(f"Error processing way: {way.id}. Error: {e}")
 
     # Convert lists to a GeoDataFrame
-    gdf = gpd.GeoDataFrame({'name': names, 'geometry': geometries}, crs=4326)
+    gdf = gpd.GeoDataFrame({"name": names, "geometry": geometries}, crs=4326)
     gdf["highway"] = highway_type
     gdf["source"] = "osm"
     return gdf
@@ -303,18 +361,25 @@ def ckd_nearest_LineString(gdf_A, gdf_B, gdf_B_cols):
     """
     gdf_A = gdf_A.reset_index(drop=True)
     gdf_B = gdf_B.reset_index(drop=True)
-    A = np.concatenate(
-        [np.array(geom.coords) for geom in gdf_A.geometry.to_list()])
+    A = np.concatenate([np.array(geom.coords) for geom in gdf_A.geometry.to_list()])
     B = [np.array(geom.coords) for geom in gdf_B.geometry.to_list()]
-    B_ix = tuple(itertools.chain.from_iterable(
-        [itertools.repeat(i, x) for i, x in enumerate(list(map(len, B)))]))
+    B_ix = tuple(
+        itertools.chain.from_iterable(
+            [itertools.repeat(i, x) for i, x in enumerate(list(map(len, B)))]
+        )
+    )
     B = np.concatenate(B)
     ckd_tree = cKDTree(B)
     dist, idx = ckd_tree.query(A, k=1)
     idx = itemgetter(*idx)(B_ix)
     gdf = pd.concat(
-        [gdf_A, gdf_B.loc[idx, gdf_B_cols].reset_index(drop=True),
-         pd.Series(dist, name='dist')], axis=1)
+        [
+            gdf_A,
+            gdf_B.loc[idx, gdf_B_cols].reset_index(drop=True),
+            pd.Series(dist, name="dist"),
+        ],
+        axis=1,
+    )
     return gdf
 
 
@@ -348,7 +413,14 @@ def get_even_spaced_points(points, number_of_points):
     return [points[0] + step * i for i in range(number_of_points)]
 
 
-def calculate_new_metrics_distance_total(current_infrastructure, highway_type, start_point, end_point, land_grids_centroids, land_grids):
+def calculate_new_metrics_distance_total(
+    current_infrastructure,
+    highway_type,
+    start_point,
+    end_point,
+    land_grids_centroids,
+    land_grids,
+):
     """
     Simulate the addition of a proposed highway to current infrastructure and calculate new metrics.
 
@@ -361,8 +433,8 @@ def calculate_new_metrics_distance_total(current_infrastructure, highway_type, s
     highway_type (str): Type of the highway for which metrics are calculated (e.g., "motorway").
     start_point (tuple of float): Coordinates (x, y) for the starting point of the proposed highway.
     end_point (tuple of float): Coordinates (x, y) for the ending point of the proposed highway.
-    land_grids_centroids (GeoDataFrame): GeoDataFrame of the grids for predictions to be made on, with the geometry being a set of points representing the centroid of such grids. 
-    land_grids (GeoDataFrame): GeoDataFrame of the grids for predictions to be made on, with the geometry being a set of polygons representing the grids themselves. 
+    land_grids_centroids (GeoDataFrame): GeoDataFrame of the grids for predictions to be made on, with the geometry being a set of points representing the centroid of such grids.
+    land_grids (GeoDataFrame): GeoDataFrame of the grids for predictions to be made on, with the geometry being a set of polygons representing the grids themselves.
 
     Returns:
     tuple:
@@ -378,48 +450,98 @@ def calculate_new_metrics_distance_total(current_infrastructure, highway_type, s
 
     inputCoordinates = list(map(lambda x, y: Point(x, y), xPoints, yPoints))
 
-    proposed_highway = gpd.GeoDataFrame(index=[0], crs='epsg:4326', geometry=[LineString(inputCoordinates)])
+    proposed_highway = gpd.GeoDataFrame(
+        index=[0], crs="epsg:4326", geometry=[LineString(inputCoordinates)]
+    )
     proposed_highway["source"] = "User Added"
     proposed_highway["highway"] = "motorway"
     proposed_highway = proposed_highway.to_crs(3395)
 
-    current_infrastructure_user_added = pd.concat([current_infrastructure, proposed_highway])
+    current_infrastructure_user_added = pd.concat(
+        [current_infrastructure, proposed_highway]
+    )
 
-    current_infrastructure_highway_type = current_infrastructure_user_added[current_infrastructure_user_added["highway"] == highway_type]
-    current_infrastructure_highway_type = current_infrastructure_highway_type.to_crs(3395)
-    
+    current_infrastructure_highway_type = current_infrastructure_user_added[
+        current_infrastructure_user_added["highway"] == highway_type
+    ]
+    current_infrastructure_highway_type = current_infrastructure_highway_type.to_crs(
+        3395
+    )
+
     # Calculate the new distance
-    current_infrastructure_highway_distance = ckd_nearest_LineString(land_grids_centroids, current_infrastructure_highway_type, gdf_B_cols=["source", "highway"])
-    current_infrastructure_highway_distance = current_infrastructure_highway_distance.rename(columns={"dist": "Road Infrastructure Distance " + str(highway_type)})
+    current_infrastructure_highway_distance = ckd_nearest_LineString(
+        land_grids_centroids,
+        current_infrastructure_highway_type,
+        gdf_B_cols=["source", "highway"],
+    )
+    current_infrastructure_highway_distance = (
+        current_infrastructure_highway_distance.rename(
+            columns={"dist": "Road Infrastructure Distance " + str(highway_type)}
+        )
+    )
 
     # Calculate the new motorway column
-    roadGrids_intersection_OSM = gpd.overlay(current_infrastructure_highway_type, land_grids, how='intersection')
+    roadGrids_intersection_OSM = gpd.overlay(
+        current_infrastructure_highway_type, land_grids, how="intersection"
+    )
 
-    roadGrids_intersection_OSM_Subset = roadGrids_intersection_OSM[["highway", "UK Model Grid ID", "geometry"]]
-    roadGrids_intersection_OSM_Subset["Road Length"] = roadGrids_intersection_OSM_Subset["geometry"].length
-    goupby_result = pd.DataFrame(roadGrids_intersection_OSM_Subset.groupby(["highway", "UK Model Grid ID"])["Road Length"].sum()).reset_index()
-    current_infrastructure_new_grid_total = goupby_result.pivot_table(values='Road Length', index="UK Model Grid ID", columns='highway', aggfunc='sum')
-    current_infrastructure_new_grid_total = current_infrastructure_new_grid_total.rename(columns={highway_type: "Total Length " + str(highway_type)})
-    current_infrastructure_all_grids = pd.merge(land_grids, current_infrastructure_new_grid_total, left_on="UK Model Grid ID", right_index=True, how="left")
+    roadGrids_intersection_OSM_Subset = roadGrids_intersection_OSM[
+        ["highway", "UK Model Grid ID", "geometry"]
+    ]
+    roadGrids_intersection_OSM_Subset["Road Length"] = (
+        roadGrids_intersection_OSM_Subset["geometry"].length
+    )
+    goupby_result = pd.DataFrame(
+        roadGrids_intersection_OSM_Subset.groupby(["highway", "UK Model Grid ID"])[
+            "Road Length"
+        ].sum()
+    ).reset_index()
+    current_infrastructure_new_grid_total = goupby_result.pivot_table(
+        values="Road Length", index="UK Model Grid ID", columns="highway", aggfunc="sum"
+    )
+    current_infrastructure_new_grid_total = (
+        current_infrastructure_new_grid_total.rename(
+            columns={highway_type: "Total Length " + str(highway_type)}
+        )
+    )
+    current_infrastructure_all_grids = pd.merge(
+        land_grids,
+        current_infrastructure_new_grid_total,
+        left_on="UK Model Grid ID",
+        right_index=True,
+        how="left",
+    )
     current_infrastructure_all_grids = current_infrastructure_all_grids.fillna(0)
 
-    return current_infrastructure_all_grids.merge(current_infrastructure_highway_distance.drop(columns="geometry"),  on="UK Model Grid ID", how="left"), current_infrastructure_user_added
+    return (
+        current_infrastructure_all_grids.merge(
+            current_infrastructure_highway_distance.drop(columns="geometry"),
+            on="UK Model Grid ID",
+            how="left",
+        ),
+        current_infrastructure_user_added,
+    )
 
 
-def replace_feature_vector_column(feature_vector, new_feature_vector, feature_vector_name):
+def replace_feature_vector_column(
+    feature_vector, new_feature_vector, feature_vector_name
+):
     """
-    Replace the feature vector column name with the new feature vector column name, replacing the data within the dataframe with new environmental conditions. 
+    Replace the feature vector column name with the new feature vector column name, replacing the data within the dataframe with new environmental conditions.
 
     Parameters:
     feature_vector (DataFrame): DataFrame of the original data.
-    new_feature_vector (DataFrame): DataFrame containing the new feature vector that is to be used to replace the data in feature_vector. 
+    new_feature_vector (DataFrame): DataFrame containing the new feature vector that is to be used to replace the data in feature_vector.
     feature_vector_name (string): Name of the feature vector to be changed.
-    
+
     Returns:
-    DataFrame: A DataFrame of the original data that was added with the feature vector now replaced by the new data. 
+    DataFrame: A DataFrame of the original data that was added with the feature vector now replaced by the new data.
     """
     feature_vector = feature_vector.drop(columns=[feature_vector_name])
-    feature_vector = feature_vector.merge(new_feature_vector[["UK Model Grid ID", feature_vector_name]], on="UK Model Grid ID")
+    feature_vector = feature_vector.merge(
+        new_feature_vector[["UK Model Grid ID", feature_vector_name]],
+        on="UK Model Grid ID",
+    )
 
     return feature_vector
 
@@ -432,7 +554,12 @@ def get_uk_grids():
     GeoDataFrame: A GeoDataFrame of the polygons for each of the grids in the UK Model alongside their centroid and unique ID.
     """
     # Construct the full path to the data file
-    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "1km_uk_grids.gpkg")
+    grid_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "supporting_data",
+        "1km_uk_grids.gpkg",
+    )
     uk_grids = gpd.read_file(grid_filename)
     uk_grids["geometry Centroid"] = uk_grids["geometry"].centroid
     uk_grids = uk_grids.rename(columns={"Grid ID": "UK Model Grid ID"})
@@ -447,7 +574,12 @@ def get_global_grids():
     GeoDataFrame: A GeoDataFrame of the polygons for each of the grids in the Global Model and unique ID.
     """
     # Construct the full path to the data file
-    grid_filename = os.path.join(script_dir, "environmental_insights_data", "supporting_data", "025latlong_world_grids.gpkg")
+    grid_filename = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "supporting_data",
+        "025latlong_world_grids.gpkg",
+    )
     global_grids = gpd.read_file(grid_filename)
     global_grids = global_grids.rename(columns={"id": "Global Model Grid ID"})
     return global_grids

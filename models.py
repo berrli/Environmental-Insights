@@ -4,6 +4,7 @@ import pandas as pd
 import variables
 import numpy as np
 
+
 def download_file_model(filename):
     """
     Checks if a file that has been requested has been downloaded and if it has then it will download the file
@@ -12,6 +13,7 @@ def download_file_model(filename):
     filename (string): The dataset filename to be downloaded from the remote server
     """
     print("Checking existence of file: " + str(filename))
+
 
 def load_model_united_kingdom(model_type, model_dataset, air_pollutant):
     """
@@ -25,10 +27,19 @@ def load_model_united_kingdom(model_type, model_dataset, air_pollutant):
     Return:
     lightGBMRegression models: A lightGBM instance of the model.
     """
-    model_filepath = "environmental_insights_models/uk/dataset_"+model_dataset+"_quantile_regression_"+model_type+"_air_pollutant_"+air_pollutant+".pkl"
+    model_filepath = (
+        "environmental_insights_models/uk/dataset_"
+        + model_dataset
+        + "_quantile_regression_"
+        + model_type
+        + "_air_pollutant_"
+        + air_pollutant
+        + ".pkl"
+    )
     with open(model_filepath, "rb") as f:  # Python 3: open(..., 'rb')
         bootstrapModel = pickle.load(f)
     return bootstrapModel
+
 
 def load_model_global(model_type, model_dataset, air_pollutant):
     """
@@ -42,10 +53,19 @@ def load_model_global(model_type, model_dataset, air_pollutant):
     Return:
     lightGBMRegression models: A lightGBM instance of the model.
     """
-    model_filepath = "environmental_insights_models/global/dataset_"+model_dataset+"_quantile_regression_"+model_type+"_air_pollutant_"+air_pollutant+".pkl"
+    model_filepath = (
+        "environmental_insights_models/global/dataset_"
+        + model_dataset
+        + "_quantile_regression_"
+        + model_type
+        + "_air_pollutant_"
+        + air_pollutant
+        + ".pkl"
+    )
     with open(model_filepath, "rb") as f:  # Python 3: open(..., 'rb')
         bootstrapModel = pickle.load(f)
     return bootstrapModel
+
 
 def load_feature_vector_typical_day_united_kingdom(month, day_of_week, hour, uk_grids):
     """
@@ -60,14 +80,23 @@ def load_feature_vector_typical_day_united_kingdom(month, day_of_week, hour, uk_
     Returns:
     geodataframe: A geodataframe of the typical dataset feature vector in the UK.
     """
-    desire_filename = "environmental_insights_data/feature_vector/uk_typical_day/Month_"+str(month)+"-Day_"+day_of_week+"-Hour_"+str(hour)+".feather"
+    desire_filename = (
+        "environmental_insights_data/feature_vector/uk_typical_day/Month_"
+        + str(month)
+        + "-Day_"
+        + day_of_week
+        + "-Hour_"
+        + str(hour)
+        + ".feather"
+    )
     if not os.path.isfile(desire_filename):
         download_file_model(desire_filename)
 
     feature_vector = pd.read_feather(desire_filename)
-    feature_vector = feature_vector.rename(columns={"Grid ID":"UK Model Grid ID"})
+    feature_vector = feature_vector.rename(columns={"Grid ID": "UK Model Grid ID"})
     feature_vector = uk_grids.merge(feature_vector, on="UK Model Grid ID")
     return feature_vector
+
 
 def get_model_feature_vector(model_type):
     """
@@ -81,7 +110,10 @@ def get_model_feature_vector(model_type):
     """
     return variables.featureVectorSubsets[model_type]
 
-def make_concentration_predicitions_united_kingdom(estimating_model, observation_data, estimating_feature_vector_column_names):
+
+def make_concentration_predicitions_united_kingdom(
+    estimating_model, observation_data, estimating_feature_vector_column_names
+):
     """
     Make predicition for a given environment conditions for air pollution concentrations.
 
@@ -97,8 +129,6 @@ def make_concentration_predicitions_united_kingdom(estimating_model, observation
 
     timestamps = feature_vector_DF.index
 
-
-
     in_seqs = list()
     for columnName in estimating_feature_vector_column_names:
         in_seq = feature_vector_DF[[columnName]].to_numpy()
@@ -106,11 +136,11 @@ def make_concentration_predicitions_united_kingdom(estimating_model, observation
         in_seqs.append(in_seq)
 
     feature_vector = np.hstack(tuple(in_seqs))
-    feature_vector = feature_vector[:,:feature_vector.shape[1]]
+    feature_vector = feature_vector[:, : feature_vector.shape[1]]
 
-
-
-    predcited_pollution_comparison = feature_vector_DF[["UK Model Grid ID"]].copy(deep=True)
+    predcited_pollution_comparison = feature_vector_DF[["UK Model Grid ID"]].copy(
+        deep=True
+    )
 
     predicitionColumnNames = list()
 
