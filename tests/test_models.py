@@ -14,9 +14,9 @@ module_path = os.path.abspath(os.path.join('..', 'environmental_insights'))
 # Add this directory to the system path
 sys.path.insert(0, module_path) 
 
-import air_pollution_functions as ei_air_pollution_functions
-import data as ei_data
-import models as ei_models
+import environmental_insights.air_pollution_functions as ei_air_pollution_functions
+import environmental_insights.data as ei_data
+import environmental_insights.models as ei_models
 
 
 class models_arguement_defence(unittest.TestCase):

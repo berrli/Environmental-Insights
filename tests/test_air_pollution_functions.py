@@ -4,8 +4,8 @@ import os
 
 # Add the parent directory to the system path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../environmental_insights')))
-import air_pollution_functions as ei_air_pollution_functions
-import data as ei_data
+import environmental_insights.air_pollution_functions as ei_air_pollution_functions
+import environmental_insights.data as ei_data
 
 
 class air_pollution_functions_arguement_defence(unittest.TestCase):
