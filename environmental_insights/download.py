@@ -1,3 +1,8 @@
+import os
+import requests
+import pandas as pd
+from rpy2 import robjects
+
 def import_monitoring_station_data(site, pollutant, years, source):
     """
     Import monitoring station data from specified source and years.
@@ -12,11 +17,6 @@ def import_monitoring_station_data(site, pollutant, years, source):
     DataFrame: A pandas DataFrame containing the combined data for all specified years,
                or None if any downloads failed.
     """
-
-    import os
-    import requests
-    import pandas as pd
-    from rpy2 import robjects
 
     # Convert site and pollutant identifiers to uppercase
     site = site.upper()
@@ -113,10 +113,7 @@ def monitoring_station_meta_data(monitoring_network="aurn"):
                or None if the download fails.
     """
 
-    import os
-    import requests
-    import pandas as pd
-    from rpy2 import robjects
+    
 
     # Dictionary mapping monitoring networks to their metadata URLs
     source_dict = {
