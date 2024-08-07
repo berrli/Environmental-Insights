@@ -1,7 +1,7 @@
 import pickle
 import os
 import pandas as pd
-import variables
+from . import variables
 import numpy as np
 
 

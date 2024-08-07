@@ -77,3 +77,11 @@ The documentation for the project is included within the directory "Documentatio
 
 ### Author
 [Liam Berrisford](https://liamberrisford.info/)
+
+# Creating Packages 
+
+## Pypip
+
+Using `python -m build` will use the `pyproject.toml` file to locally build the package and store it within the `dist` directory. This can then be installed using `pip install dist/*.whl`
+
+## Conda

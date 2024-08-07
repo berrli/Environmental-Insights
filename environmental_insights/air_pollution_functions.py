@@ -5,17 +5,22 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib import colors
 import numpy as np
-import variables
-import pandas as pd
+from . import variables
+from pathlib import Path
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
+# Get the root directory of the package
+PACKAGE_ROOT = Path(__file__).resolve().parent
+VISUALISATIONS_DIR = PACKAGE_ROOT / 'environmental_insights/environmental_insights_visulisations'
 
-def air_pollution_concentrations_to_UK_daily_air_quality_index(
-    predicitions, pollutant, air_pollutant_column_name
-):
+# Ensure the directory exists
+VISUALISATIONS_DIR.mkdir(parents=True, exist_ok=True)
+
+def air_pollution_concentrations_to_UK_daily_air_quality_index(predicitions, pollutant, air_pollutant_column_name):
     """
-    Add onto an existing dataframe the Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) for the air pollutant concentration data described.
+    Add onto an existing dataframe the Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) 
+    for the air pollutant concentration data described.
 
     Parameters:
     predicitions (dataframe): A dataframe of the air pollution concentrations that are to be added onto
@@ -241,11 +246,10 @@ def air_pollution_concentrations_to_UK_daily_air_quality_index(
     return predicitions
 
 
-def visualise_air_pollution_daily_air_quality_index(
-    air_pollution_GDF, aqi_to_plot, filename
-):
+def visualise_air_pollution_daily_air_quality_index(air_pollution_GDF, aqi_to_plot, filename):
     """
-    Visualise air_pollution_GDF with the UK Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) using the indiviudal index bounds and standard color codes.
+    Visualise air_pollution_GDF with the UK Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) 
+    using the individual index bounds and standard color codes.
 
     Parameters:
     air_pollution_GDF (dataframe): A dataframe of the air pollution concentrations that are to be added onto
@@ -310,15 +314,14 @@ def visualise_air_pollution_daily_air_quality_index(
 
     plt.legend(handles=legend_items, title="UK DAQI")
     fig.savefig(
-        "environmental_insights_visulisations/" + filename + ".png", bbox_inches="tight"
+        VISUALISATIONS_DIR / f"{filename}.png", bbox_inches="tight"
     )
 
 
-def visualise_air_pollution_daily_air_quality_bands(
-    air_pollution_GDF, aqi_to_plot, filename
-):
+def visualise_air_pollution_daily_air_quality_bands(air_pollution_GDF, aqi_to_plot, filename):
     """
-    Visualise air_pollution_GDF with the UK Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) using the bands and standard color codes.
+    Visualise air_pollution_GDF with the UK Daily Air Quality Index (https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info) 
+    using the bands and standard color codes.
 
     Parameters:
     air_pollution_GDF (dataframe): A dataframe of the air pollution concentrations that are to be added onto
@@ -380,13 +383,11 @@ def visualise_air_pollution_daily_air_quality_bands(
 
     plt.legend(handles=legend_items, title="UK DAQI \n Bands")
     fig.savefig(
-        "environmental_insights_visulisations/" + filename + ".png", bbox_inches="tight"
+        VISUALISATIONS_DIR / f"{filename}.png", bbox_inches="tight"
     )
 
 
-def change_in_concentrations_visulisation(
-    first_dataframe, second_dataframe, air_pollutant, filename
-):
+def change_in_concentrations_visulisation(first_dataframe, second_dataframe, air_pollutant, filename):
     """
     Visualisation the change in concentrations for two datasets of air pollution concentrations based on actual concentrations.
 
@@ -457,13 +458,11 @@ def change_in_concentrations_visulisation(
         },
     )
     fig.savefig(
-        "environmental_insights_visulisations/" + filename + ".png", bbox_inches="tight"
+        VISUALISATIONS_DIR / f"{filename}.png", bbox_inches="tight"
     )
 
 
-def change_in_aqi_visulisation(
-    first_dataframe, second_dataframe, air_pollutant, filename
-):
+def change_in_aqi_visulisation(first_dataframe, second_dataframe, air_pollutant, filename):
     """
     Visualisation the change in concentrations for two datasets of air pollution concentrations based on air quality indexes.
 
@@ -537,13 +536,11 @@ def change_in_aqi_visulisation(
         legend_kwds={"format": "%.0f", "shrink": 0.5, "label": "AQI Change (μg/m$^3$)"},
     )
     fig.savefig(
-        "environmental_insights_visulisations/" + filename + ".png", bbox_inches="tight"
+        VISUALISATIONS_DIR / f"{filename}.png", bbox_inches="tight"
     )
 
 
-def change_in_concentration_line(
-    air_pollutant, baseline_list, change_list, days, hours_covered, filename
-):
+def change_in_concentration_line(air_pollutant, baseline_list, change_list, days, hours_covered, filename):
     """
     Visualisation the change in concentrations for two datasets of air pollution concentrations in a line graph.
 
@@ -694,5 +691,5 @@ def change_in_concentration_line(
     axes.legend(loc="upper left")
     plt.show()
     fig.savefig(
-        "environmental_insights_visulisations/" + filename + ".png", bbox_inches="tight"
+        VISUALISATIONS_DIR / f"{filename}.png", bbox_inches="tight"
     )

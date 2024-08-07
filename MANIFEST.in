@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include environmental_insights/environmental_insights_data *
+recursive-include environmental_insights/environmental_insights_models *
+recursive-include environmental_insights/environmental_insights_visulisations *
+recursive-include Documentation *
+recursive-include tests *
