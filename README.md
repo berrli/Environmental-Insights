@@ -1,7 +1,7 @@
 <h1 style="text-align: center; font-size:1vw">Environmental Insights</h1>
 
 <p align="center">
-  <img src="environmental_insights.png" />
+  <img src="_static/environmental_insights.png" />
 </p>
 
 Environmental Insights is a Python package for downloading and visualising air pollution concentration data in the UK and globally. Alongside the downloaded data, a set of functions have also been provided to manipulate the air pollution concentrations and explore air pollution futures. The Python package is a companion to the paper entitled "Environmental Insights: Democratizing Access to Ambient Air Pollution Data and Predictive Analytics with an Open-Source Python Package", with the following abstract:
@@ -82,6 +82,6 @@ The documentation for the project is included within the directory "Documentatio
 
 ## Pypip
 
-Using `python -m build` will use the `pyproject.toml` file to locally build the package and store it within the `dist` directory. This can then be installed using `pip install dist/*.whl`
+Using `python -m build` will use the `pyproject.toml` file to locally build the package and store it within the `dist` directory. This can then be installed using `pip install dist/*.whl`. The final `dist` files can be uploaded to PyPI via twine. 
 
 ## Conda
