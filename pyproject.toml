@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "environmental-insights"
-version = "0.1.0-beta"
+version = "0.1.3_beta"
 description = "A Python package for democratizing access to ambient air pollution data and predictive analytics."
 readme = "README.md"
 requires-python = ">=3.6"
