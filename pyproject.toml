@@ -1,19 +1,46 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["setuptools>=42", "wheel", "poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "environmental_insights"
+version = "0.1.7b0"
+description = "A Python package for democratizing access to ambient air pollution data and predictive analytics."
+authors = [
+    { name="Liam J. Berrisford", email="l.berrisford@exeter.ac.uk" }
+]
+license = { text="GNU General Public License v3 (GPLv3)" }
+keywords = ["air pollution", "predictive analytics", "environmental data", "geospatial analysis"]
+readme = "README.md"
+
+
+dependencies = [
+    "geopandas",
+    "lightgbm",
+    "matplotlib",
+    "overpy",
+    "pandas",
+    "pyarrow",
+    "pyogrio",
+    "requests",
+    "rpy2",
+    "scipy",
+    "shapely"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
 
 [tool.poetry]
 name = "environmental_insights"
 version = "0.1.7b0"
 description = "A Python package for democratizing access to ambient air pollution data and predictive analytics."
-authors = [
-    { name = "Liam J. Berrisford", email = "l.berrisford@exeter.ac.uk" }
-]
+authors = ["Liam J. Berrisford <l.berrisford@exeter.ac.uk>"]
 license = "GPL-3.0-or-later"
 keywords = ["air pollution", "predictive analytics", "environmental data", "geospatial analysis"]
 readme = "README.md"
 packages = [
-    { include = "environmental_insights" }  # Adjust if your package directory has a different name
+    { include = "environmental_insights" }  # Adjust this if your package directory has a different name
 ]
 
 [tool.poetry.dependencies]
@@ -31,9 +58,9 @@ scipy = "*"
 shapely = "*"
 
 [tool.poetry.dev-dependencies]
-# Add your development dependencies here if needed, e.g.:
+# Add your development dependencies here if needed
+# For example, to use pytest:
 # pytest = "^6.2"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+
+
