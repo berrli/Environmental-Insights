@@ -58,9 +58,7 @@ scipy = "*"
 shapely = "*"
 
 [tool.poetry.dev-dependencies]
-# Add your development dependencies here if needed
-# For example, to use pytest:
-# pytest = "^6.2"
+pytest = "^6.2"
 
 
 
