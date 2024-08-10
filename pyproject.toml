@@ -3,54 +3,30 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "environmental-insights"
-version = "0.1.3_beta"
+name = "environmental_insights"
+version = "0.1.7b0"
 description = "A Python package for democratizing access to ambient air pollution data and predictive analytics."
-readme = "README.md"
-requires-python = ">=3.6"
-license = {text = "GNU General Public License v3 (GPLv3)"}
-
 authors = [
-    {name = "Liam J. Berrisford", email = "l.berrisford@exeter.ac.uk"}
+    { name="Liam J. Berrisford", email="l.berrisford@exeter.ac.uk" }
 ]
+license = { text="GNU General Public License v3 (GPLv3)" }
+keywords = ["air pollution", "predictive analytics", "environmental data", "geospatial analysis"]
+readme = "README.md"
 
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent"
-]
-
-keywords = ["air pollution", "data analysis", "environmental insights"]
-
-urls = { "Homepage" = "https://github.com/berrli/Environmental-Insights" }
 
 dependencies = [
-    "lightgbm==3.3.3",
-    "geopandas==0.14.1",
-    "pandas==2.1.3",
-    "scipy==1.11.4",
-    "matplotlib==3.8.2",
-    "overpy==0.6",
-    "shapely==2.0.2",
-    "pyarrow==14.0.1",
-    "pyogrio==0.7.2", 
+    "geopandas",
+    "lightgbm",
+    "matplotlib",
+    "overpy",
+    "pandas",
+    "pyarrow",
+    "pyogrio",
     "requests",
-    "rpy2"
+    "rpy2",
+    "scipy",
+    "shapely"
 ]
-
-[project.optional-dependencies]
-dev = [
-    "pytest==8.3.2",
-    "black==23.9.1",
-    "nbformat>=5.0"
-]
-
-[project.scripts]
-insights = "environmental_insights.main:main"
-
-[tool.setuptools]
-include-package-data = true
 
 [tool.setuptools.packages.find]
-where = ["environmental_insights"]
-include = ["*"]
+where = ["."]

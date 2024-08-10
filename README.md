@@ -83,4 +83,4 @@ The documentation for the project is included within the directory "Documentatio
 
 ## Pypip
 
-Using `python -m build` will use the `pyproject.toml` file to locally build the package and store it within the `dist` directory. This can then be installed using `pip install dist/*.whl`. The final `dist` files can be uploaded to PyPI via twine. 
+Using `python -m build` will use the `pyproject.toml` file to locally build the package and store it within the `dist` directory. This can then be installed using `pip install dist/*.whl`. The final `dist` files can be uploaded to PyPI via twine, using "". 
