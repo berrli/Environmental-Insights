@@ -1,0 +1,42 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Environmental Insights
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Liam
+    family-names: Berrisford
+    email: liberrisford@gmail.com
+    affiliation: University of Exeter
+    orcid: 'https://orcid.org/0000-0001-6578-3497'
+identifiers:
+  - type: doi
+    value: 10.1016/j.envsoft.2024.106131
+repository-code: 'https://github.com/berrli/Environmental-Insights'
+abstract: >-
+  Ambient air pollution is a pervasive issue with
+  wide-ranging effects on human health, ecosystem vitality,
+  and economic structures. Utilizing data on ambient air
+  pollution concentrations, researchers can perform
+  comprehensive analyses to uncover the multifaceted impacts
+  of air pollution across society. To this end, we introduce
+  Environmental Insights, an open-source Python package
+  designed to democratize access to air pollution
+  concentration data. This tool enables users to easily
+  retrieve historical air pollution data and employ a
+  Machine Learning model for forecasting potential future
+  conditions. Moreover, Environmental Insights includes a
+  suite of tools aimed at facilitating the dissemination of
+  analytical findings and enhancing user engagement through
+  dynamic visualizations. This comprehensive approach
+  ensures that the package caters to the diverse needs of
+  individuals looking to explore and understand air
+  pollution trends and their implications.
+keywords:
+  - Air Pollution
+  - 'Machine Learning '
+  - Predictive Analytics
