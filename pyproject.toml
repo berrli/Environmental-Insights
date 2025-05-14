@@ -18,8 +18,8 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-geopandas = "*"
+python = "^3.10"
+geopandas = "^1.0.1"
 lightgbm = "*"
 matplotlib = "*"
 overpy = "*"
@@ -27,12 +27,22 @@ pandas = "*"
 pyarrow = "*"
 pyogrio = "*"
 requests = "*"
-rpy2 = "*"
 scipy = "*"
 shapely = "*"
+jupyterlab = "^4.4.2"
+xarray = "^2025.4.0"
+netcdf4 = "^1.7.2"
+scikit-learn = "^1.6.1"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2"
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+ipykernel = "^6.29.5"
+jupyter = "^1.1.1"
 
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:.*shapely\\.geos.*:DeprecationWarning",
+    "ignore:numpy.ndarray size changed.*:RuntimeWarning"
+]
 
 

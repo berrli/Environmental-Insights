@@ -48,9 +48,9 @@ def air_pollution_concentrations_to_UK_daily_air_quality_index(
         )
 
     # Check a valid air pollutant has been inputted.
-    if pollutant not in ["o3", "no2", "nox", "no", "so2", "pm2.5", "pm10"]:
+    if pollutant not in ["o3", "no2", "nox", "no", "so2", "pm2p5", "pm10"]:
         raise ValueError(
-            'Please ensure that the value for pollutant is one of ["o3", "no2", "so2", "pm2.5", "pm10"], the recieved arguement is: '
+            'Please ensure that the value for pollutant is one of ["o3", "no2", "so2", "pm2p5", "pm10"], the recieved arguement is: '
             + pollutant
             + " of the type: "
             + str(type(pollutant))
@@ -192,8 +192,8 @@ def air_pollution_concentrations_to_UK_daily_air_quality_index(
             bins=air_quality_index_bins["so2"],
             labels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         )
-    elif pollutant == "pm2.5":
-        air_quality_index_bins["pm2.5"] = [
+    elif pollutant == "pm2p5":
+        air_quality_index_bins["pm2p5"] = [
             0,
             11.5,
             23.5,
@@ -206,10 +206,10 @@ def air_pollution_concentrations_to_UK_daily_air_quality_index(
             70.5,
             math.inf,
         ]
-        predicitions["pm2.5 AQI"] = pd.cut(
+        predicitions["pm2p5 AQI"] = pd.cut(
             predicitions[air_pollutant_column_name],
             right=False,
-            bins=air_quality_index_bins["pm2.5"],
+            bins=air_quality_index_bins["pm2p5"],
             labels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         )
     elif pollutant == "pm10":
@@ -269,9 +269,9 @@ def visualise_air_pollution_daily_air_quality_index(
     #####
 
     # Ensure that the format for the aqi_to_plot is of the correct format.
-    if aqi_to_plot not in ["no2 AQI", "o3 AQI", "pm10 AQI", "pm2.5 AQI", "so2 AQI"]:
+    if aqi_to_plot not in ["no2 AQI", "o3 AQI", "pm10 AQI", "pm2p5 AQI", "so2 AQI"]:
         raise ValueError(
-            "Please ensure that the AQI to plot is of the correct form, namely one of the following: no2 AQI, o3 AQI, pm10 AQI, pm2.5 AQI, so2 AQI"
+            "Please ensure that the AQI to plot is of the correct form, namely one of the following: no2 AQI, o3 AQI, pm10 AQI, pm2p5 AQI, so2 AQI"
         )
 
     # Ensure that the dataframe passed is a geodataframe
@@ -345,11 +345,11 @@ def visualise_air_pollution_daily_air_quality_bands(
         "no2 Air Quality Index AQI Band",
         "o3 Air Quality Index AQI Band",
         "pm10 Air Quality Index AQI Band",
-        "pm2.5 Air Quality Index AQI Band",
+        "pm2p5 Air Quality Index AQI Band",
         "so2 Air Quality Index AQI Band",
     ]:
         raise ValueError(
-            "Please ensure that the AQI to plot is of the correct form, namely one of the following: no2 Air Quality Index AQI Band, o3 Air Quality Index AQI Band, pm10 Air Quality Index AQI Band, pm2.5 Air Quality Index AQI Band, so2 Air Quality Index AQI Band"
+            "Please ensure that the AQI to plot is of the correct form, namely one of the following: no2 Air Quality Index AQI Band, o3 Air Quality Index AQI Band, pm10 Air Quality Index AQI Band, pm2p5 Air Quality Index AQI Band, so2 Air Quality Index AQI Band"
         )
 
     # Ensure that the dataframe passed is a geodataframe
@@ -589,10 +589,10 @@ def change_in_concentration_line(
 
             hour_counter = hour_counter + 1
             baseline_pollution_data.append(
-                baseline_pollution_hour["Model Predicition"].mean()
+                baseline_pollution_hour["Model Prediction"].mean()
             )
             updated_pollution_data.append(
-                change_pollution_hour["Model Predicition"].mean()
+                change_pollution_hour["Model Prediction"].mean()
             )
     single_pollutant_data = pd.DataFrame.from_dict(
         {

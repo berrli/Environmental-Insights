@@ -7,90 +7,173 @@ from shapely.geometry import Point, LineString
 import numpy as np
 import itertools
 from operator import itemgetter
+import xarray as xr
+import environmental_insights.download as ei_download
+
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
 # Get the directory where this script is located
 script_dir = os.path.dirname(__file__)
 
-
-def download_file_data(filename):
+def read_nc(filepath: str) -> xr.Dataset:
     """
-    Checks if a file that has been requested has been downloaded and if it has then it will download the file.
+    Read a NetCDF (.nc) file into an xarray.Dataset.
 
-    Parameters:
-    filename (string): The dataset filename to be downloaded from the remote server
+    Parameters
+    ----------
+    filepath : str
+        Path to the NetCDF file.
+
+    Returns
+    -------
+    xr.Dataset
     """
-    print("Checking existence of file: " + str(filename))
+    return xr.open_dataset(filepath)
 
+def netcdf_to_dataframe(ds: xr.Dataset) -> pd.DataFrame:
+    """
+    Convert an xarray.Dataset to a pandas DataFrame,
+    dropping any rows that have no valid data in *any* variable.
+
+    Parameters
+    ----------
+    ds : xr.Dataset
+        The dataset to convert.
+
+    Returns
+    -------
+    pd.DataFrame
+    """
+    df = ds.to_dataframe()
+    df = df.dropna(how="all")
+    return df.reset_index()
 
 def air_pollution_concentration_typical_day_real_time_united_kingdom(
-    month, day_of_Week, hour
+    month: int,
+    day_of_week: str,
+    hour: int,
+    data_type: str = "Input",
 ):
     """
-    Retrieve the typical day complete dataset for the UK for a given time.
+    Retrieve the typical-day dataset (either Input or Output) for the UK for a given time.
 
     Parameters:
-    month (int): An int to represent the month of interest, 1 being January, and 12 being December.
-    day_of_Week (string): A string to represent the day of the week of interest in the form of "Friday".
-    hour (int): An int to represent the hour of interest, 0 being midnight, and 23 being the final possible hour of the day.
+    -----------
+    month : int
+        Month of interest, 1 (January) through 12 (December).
+    day_of_week : str
+        Day of week of interest, e.g., "Monday", "Tuesday", etc.
+    hour : int
+        Hour of interest, 0 (midnight) through 23.
+    data_type : str, optional
+        Whether to fetch the "Input" or the "Output" version of the SynthHAPPE dataset.
+        Defaults to "Input".
 
     Returns:
-    DataFrame: A DataFrame of the typical dataset for the UK for a given time of interest.
+    --------
+    pandas.DataFrame
+        The typical-day air pollution dataset for the UK at the specified time,
+        as a flattened DataFrame.
     """
-    # Construct the full path to the data file
-    desired_filename = os.path.join(
+    # validate data_type
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
+
+    # build local directory and filename based on whether we're dealing with Input or Output data
+    out_dir = os.path.join(
         script_dir,
         "environmental_insights_data",
-        "air_pollution",
-        "uk_typical_day",
-        f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather",
+        "SynthHAPPE",
+        data_type,
     )
-    if not os.path.isfile(desired_filename):
-        # download_file_data(desired_filename)
-        pass
+    os.makedirs(out_dir, exist_ok=True)
 
-    air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(
-        columns={"Grid ID": "UK Model Grid ID"}
-    )
-    return air_pollution_data
+    filename = f"Month_{month}-Day_{day_of_week}-Hour_{hour}.nc"
+    full_path = os.path.join(out_dir, filename)
 
+    # download from EI if not already on disk
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="SynthHAPPE",
+            data_type=data_type,
+            month=month,
+            day=day_of_week,
+            hour=hour,
+            output_dir=out_dir,
+        )
+
+    # read NetCDF and convert to DataFrame
+    nc = read_nc(full_path)
+    df = netcdf_to_dataframe(nc)
+    return df
 
 def air_pollution_concentration_nearest_point_typical_day_united_kingdom(
-    month, day_of_Week, hour, latitude, longitude, uk_grids
+    month: int,
+    day_of_week: str,
+    hour: int,
+    latitude: float,
+    longitude: float,
+    uk_grids,
+    data_type: str = "Input",
 ):
     """
-    Retrieve a single air pollution concentration data point predicted based on the UK data, based on the closest point given by the latitude and longitude.
+    Retrieve a single air pollution concentration data point (Input or Output)
+    for the UK model at the closest grid point to a given lat/long.
 
     Parameters:
-    month (int): An int to represent the month of interest, 1 being January, and 12 being December.
-    day_of_Week (string): A string to represent the day of the week of interest in the form of "Friday".
-    hour (int): An int to represent the hour of interest, 0 being midnight, and 23 being the final possible hour of the day.
-    latitude (float): A float denoting the desired latitude.
-    longitude (float): A float denoting the desired longitude.
-    uk_grids (GeoDataFrame): A GeoDataFrame that describes the estimation points for the UK model.
+    -----------
+    month : int
+        Month of interest, 1 (January) through 12 (December).
+    day_of_week : str
+        Day of week of interest, e.g. "Monday", "Tuesday", etc.
+    hour : int
+        Hour of interest, 0 (midnight) through 23.
+    latitude : float
+        Latitude of the point to estimate.
+    longitude : float
+        Longitude of the point to estimate.
+    uk_grids : GeoDataFrame
+        Model grid points for the UK.
+    data_type : str, optional
+        "Input" or "Output" dataset to fetch. Defaults to "Input".
 
     Returns:
-    DataFrame: A DataFrame of the nearest point in the data at the given timestamp.
+    --------
+    pandas.DataFrame
+        One-row DataFrame with the nearest grid’s pollutant values
+        at the specified time.
     """
-    # Construct the full path to the data file
-    desired_filename = os.path.join(
+    # ensure valid data_type
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
+
+    # build local directory and target filename based on data_type
+    out_dir = os.path.join(
         script_dir,
         "environmental_insights_data",
-        "air_pollution",
-        "uk_typical_day",
-        f"Month_{month}-Day_{day_of_Week}-Hour_{hour}.feather",
+        "SynthHAPPE",
+        data_type,
     )
-    if not os.path.isfile(desired_filename):
-        # download_file_data(desired_filename)
-        pass
+    os.makedirs(out_dir, exist_ok=True)
 
-    air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(
-        columns={"Grid ID": "UK Model Grid ID"}
-    )
-    air_pollution_data = uk_grids.merge(air_pollution_data, on="UK Model Grid ID")
+    filename = f"Month_{month}-Day_{day_of_week}-Hour_{hour}.nc"
+    full_path = os.path.join(out_dir, filename)
+
+    # download from EI if missing
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="SynthHAPPE",
+            data_type=data_type,
+            month=month,
+            day=day_of_week,
+            hour=hour,
+            output_dir=out_dir,
+        )
+
+    air_pollution_data = read_nc(full_path)
+    air_pollution_data = netcdf_to_dataframe(air_pollution_data)
+    air_pollution_data = uk_grids.merge(air_pollution_data, on="UK_Model_Grid_ID")
     air_pollution_data["geometry"] = air_pollution_data["geometry"].centroid
     air_pollution_data = air_pollution_data.to_crs(4326)
     air_pollution_data["Latitude"] = air_pollution_data["geometry"].y
@@ -109,78 +192,123 @@ def air_pollution_concentration_nearest_point_typical_day_united_kingdom(
     )
     closest_points["Requested Latitude"] = latitude
     closest_points["Requested Longitude"] = longitude
-    closest_points = closest_points.drop(columns=["UK Model Grid ID", "geometry"])
+    closest_points = closest_points.drop(columns=["UK_Model_Grid_ID", "geometry"])
     return closest_points
 
-
-def air_pollution_concentration_complete_set_real_time_united_kingdom(time):
-    """
-    Retrieve the complete predicted dataset for a given timestamp in the UK dataset.
-
-    Parameters:
-    time (string): A string denoting the timestamp desired, of the form YYYY-MM-DD HHmmss.
-
-    Returns:
-    DataFrame: A DataFrame of the dataset for the UK for a given timestamp.
-    """
-    # Construct the full path to the data file
-    desired_filename = os.path.join(
-        script_dir,
-        "environmental_insights_data",
-        "air_pollution",
-        "uk_complete_set",
-        f"{time}.feather",
-    )
-    if not os.path.isfile(desired_filename):
-        download_file_data(time)
-
-    air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(
-        columns={"Grid ID": "UK Model Grid ID"}
-    )
-    return air_pollution_data
-
-
-def air_pollution_concentration_nearest_point_real_time_united_kingdom(
-    latitude, longitude, time, uk_grids
+def air_pollution_concentration_complete_set_real_time_united_kingdom(
+    time: str,
+    data_type: str = "Input",
 ):
     """
-    Retrieve a single air pollution concentration data point predicted based on the UK data, based on the closest point given by the latitude and longitude.
+    Retrieve the complete predicted dataset (Input or Output) for a given timestamp in the UK ML-HAPPE dataset.
 
     Parameters:
-    latitude (float): A float denoting the desired latitude.
-    longitude (float): A float denoting the desired longitude.
-    time (string): A string denoting the timestamp desired, of the form YYYY-MM-DD HHmmss.
-    uk_grids (GeoDataFrame): A GeoDataFrame that describes the estimation points for the UK model.
+    -----------
+    time : str
+        Timestamp of the form "YYYY-MM-DD HHmmss".
+    data_type : str, optional
+        Whether to fetch the "Input" or "Output" version of the ML-HAPPE dataset.
+        Defaults to "Input".
 
     Returns:
-    DataFrame: A DataFrame of the nearest point in the data at the given timestamp.
+    --------
+    pandas.DataFrame
+        The full air pollution dataset for the UK at the specified timestamp,
+        as a flattened DataFrame.
     """
-    print(
-        "Accessing air pollution concentration at: Latitude: "
-        + str(latitude)
-        + " Longitude: "
-        + str(longitude)
-        + " Time: "
-        + str(time)
-    )
+    # validate data_type
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
 
-    # Construct the full path to the data file
-    desired_filename = os.path.join(
+    # build local directory and filename based on whether we're dealing with Input or Output data
+    out_dir = os.path.join(
         script_dir,
         "environmental_insights_data",
-        "air_pollution",
-        "uk_complete_set",
-        f"{time}.feather",
+        "ML-HAPPE",
+        data_type,
     )
-    if not os.path.isfile(desired_filename):
-        download_file_data(time)
+    os.makedirs(out_dir, exist_ok=True)
 
-    air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(
-        columns={"Grid ID": "UK Model Grid ID"}
+    filename = f"{time}.nc"
+    full_path = os.path.join(out_dir, filename)
+
+    # download from EI if not already on disk
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="ML-HAPPE",
+            data_type=data_type,
+            timestamp=time,
+            output_dir=out_dir,
+        )
+
+    # read NetCDF and convert to DataFrame
+    nc = read_nc(full_path)
+    df = netcdf_to_dataframe(nc)
+    return df
+
+def air_pollution_concentration_nearest_point_real_time_united_kingdom(
+    latitude: float,
+    longitude: float,
+    time: str,
+    uk_grids,
+    data_type: str = "Input",
+):
+    """
+    Retrieve a single air pollution concentration data point (Input or Output)
+    for the UK ML-HAPPE model at the closest grid point to a given lat/long and timestamp.
+
+    Parameters:
+    -----------
+    latitude : float
+        Latitude of the point to estimate.
+    longitude : float
+        Longitude of the point to estimate.
+    time : str
+        Timestamp of the form "YYYY-MM-DD HHmmss".
+    uk_grids : GeoDataFrame
+        Model grid points for the UK.
+    data_type : str, optional
+        "Input" or "Output" dataset to fetch. Defaults to "Input".
+
+    Returns:
+    --------
+    pandas.DataFrame
+        One‐row DataFrame with the nearest grid’s pollutant values
+        at the specified time.
+    """
+    print(
+        f"Accessing air pollution concentration at: "
+        f"Latitude: {latitude}, Longitude: {longitude}, Time: {time}"
     )
-    air_pollution_data = uk_grids.merge(air_pollution_data, on="UK Model Grid ID")
+
+    # validate data_type
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
+
+    # build local directory and filename based on data_type
+    out_dir = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "ML-HAPPE",
+        data_type,
+    )
+    os.makedirs(out_dir, exist_ok=True)
+
+    filename = f"{time}.nc"
+    full_path = os.path.join(out_dir, filename)
+
+    # download from EI if missing
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="ML-HAPPE",
+            data_type=data_type,
+            timestamp=time,
+            output_dir=out_dir,
+        )
+
+    air_pollution_data = read_nc(full_path)
+    air_pollution_data = netcdf_to_dataframe(air_pollution_data)
+    air_pollution_data = uk_grids.merge(air_pollution_data, on="UK_Model_Grid_ID")
     air_pollution_data["geometry"] = air_pollution_data["geometry"].centroid
 
     air_pollution_data = air_pollution_data.to_crs(4326)
@@ -200,7 +328,7 @@ def air_pollution_concentration_nearest_point_real_time_united_kingdom(
     )
     closest_points["Requested Latitude"] = latitude
     closest_points["Requested Longitude"] = longitude
-    closest_points = closest_points.drop(columns=["UK Model Grid ID", "geometry"])
+    closest_points = closest_points.drop(columns=["UK_Model_Grid_ID", "geometry"])
     return closest_points
 
 
@@ -222,8 +350,9 @@ def air_pollution_concentration_complete_set_real_time_global(time):
         "global_complete_set",
         f"{time}.feather",
     )
-    if not os.path.isfile(desired_filename):
-        download_file_data(time)
+    if not os.path.isfile(desired_filename):   
+        print("Dataset not yet avaiable")
+        return None
 
     air_pollution_data = pd.read_feather(desired_filename)
     air_pollution_data = air_pollution_data.rename(
@@ -486,18 +615,18 @@ def calculate_new_metrics_distance_total(
     )
 
     roadGrids_intersection_OSM_Subset = roadGrids_intersection_OSM[
-        ["highway", "UK Model Grid ID", "geometry"]
+        ["highway", "UK_Model_Grid_ID", "geometry"]
     ]
     roadGrids_intersection_OSM_Subset["Road Length"] = (
         roadGrids_intersection_OSM_Subset["geometry"].length
     )
     goupby_result = pd.DataFrame(
-        roadGrids_intersection_OSM_Subset.groupby(["highway", "UK Model Grid ID"])[
+        roadGrids_intersection_OSM_Subset.groupby(["highway", "UK_Model_Grid_ID"])[
             "Road Length"
         ].sum()
     ).reset_index()
     current_infrastructure_new_grid_total = goupby_result.pivot_table(
-        values="Road Length", index="UK Model Grid ID", columns="highway", aggfunc="sum"
+        values="Road Length", index="UK_Model_Grid_ID", columns="highway", aggfunc="sum"
     )
     current_infrastructure_new_grid_total = (
         current_infrastructure_new_grid_total.rename(
@@ -507,7 +636,7 @@ def calculate_new_metrics_distance_total(
     current_infrastructure_all_grids = pd.merge(
         land_grids,
         current_infrastructure_new_grid_total,
-        left_on="UK Model Grid ID",
+        left_on="UK_Model_Grid_ID",
         right_index=True,
         how="left",
     )
@@ -516,7 +645,7 @@ def calculate_new_metrics_distance_total(
     return (
         current_infrastructure_all_grids.merge(
             current_infrastructure_highway_distance.drop(columns="geometry"),
-            on="UK Model Grid ID",
+            on="UK_Model_Grid_ID",
             how="left",
         ),
         current_infrastructure_user_added,
@@ -539,8 +668,8 @@ def replace_feature_vector_column(
     """
     feature_vector = feature_vector.drop(columns=[feature_vector_name])
     feature_vector = feature_vector.merge(
-        new_feature_vector[["UK Model Grid ID", feature_vector_name]],
-        on="UK Model Grid ID",
+        new_feature_vector[["UK_Model_Grid_ID", feature_vector_name]],
+        on="UK_Model_Grid_ID",
     )
 
     return feature_vector
@@ -562,7 +691,7 @@ def get_uk_grids():
     )
     uk_grids = gpd.read_file(grid_filename)
     uk_grids["geometry Centroid"] = uk_grids["geometry"].centroid
-    uk_grids = uk_grids.rename(columns={"Grid ID": "UK Model Grid ID"})
+    uk_grids = uk_grids.rename(columns={"Grid ID": "UK_Model_Grid_ID"})
     return uk_grids
 
 
