@@ -9,7 +9,8 @@ parts:
       - file: notebooks/data_explorer/data_explorer_england
       - file: notebooks/data_explorer/data_explorer_global
       - file: notebooks/data_explorer/data_explorer_england_synthetic
-      - file: notebooks/data_explorer/training_data_explorer
+      - file: notebooks/data_explorer/uk_training_data_explorer
+      - file: notebooks/data_explorer/global_training_data_explorer
   - caption: Package Explorer 
     chapters:
       - file: notebooks/package_explorer/sandbox
