@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-build_no2_input_data_kepler.py
-
 Loads UK model grid and two NO₂ prediction datasets (typical-day and complete real-time),
 prepares & simplifies the geometries, then visualizes each layer in its own KeplerGl map and
 saves each map to separate HTML files in the ../_static/ directory (creating it if needed).
+
+Extended to also build a GLOBAL ML-HAPPG dashboard (real-time Output).
 """
 
 import os
+import copy
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -15,24 +16,26 @@ from shapely.ops import transform
 from keplergl import KeplerGl
 
 # your EI helper functions:
-from environmental_insights import data as ei_data
+from environmental_insights import data as ei_data  # get_uk_grids, get_global_grids, UK/Global readers
 
 # === CONFIGURE HERE ===
-MONTH         = 1
-DAY_OF_WEEK   = "Friday"
-HOUR          = 9
-REALTIME_TIME = "2018-01-01_090000"  # YYYY-MM-DD_HHMMSS
+MONTH               = 1
+DAY_OF_WEEK         = "Friday"
+HOUR                = 9
+
+# Separate real-time targets:
+UK_REALTIME_TIME     = "2018-01-01_090000"  # ML-HAPPE (UK)
+GLOBAL_REALTIME_TIME = "2022-01-03_120000"  # ML-HAPPG (Global)
 
 VAR_NAME      = "no2_Prediction_Mean"
 VAR_NAME_NEAT = "Nitrogen Dioxide Prediction Mean"
 # ======================
 
-# Adjust pandas display settings for a "pretty" console output
+# Pretty console output
 pd.set_option('display.width', 120)
 pd.set_option('display.max_columns', None)
 
-# Kepler Gl base config (shared)
-import copy
+# KeplerGl base config (shared)
 base_config = {
     'version': 'v1',
     'config': {
@@ -120,7 +123,7 @@ base_config = {
             'splitMaps': [],
             'animationConfig': {'currentTime': None, 'speed': 1}
         },
-        'mapState': {
+        'mapState': {  # UK default view
             'bearing': 0,
             'dragRotate': False,
             'latitude': 52.69738599316781,
@@ -133,41 +136,54 @@ base_config = {
 }
 
 def load_uk_grid():
+    """UK 1km polygons with UK_Model_Grid_ID"""
     gdf = ei_data.get_uk_grids()
     return gdf[["UK_Model_Grid_ID", "geometry"]]
 
-def prepare_and_merge(df: pd.DataFrame,
-                      grid_gdf: gpd.GeoDataFrame,
-                      simplify_tol: float = 0.0005,
-                      quantize_digits: int = 4) -> gpd.GeoDataFrame:
-    df2 = df[["UK_Model_Grid_ID", VAR_NAME]].dropna(subset=[VAR_NAME]).copy()
+def load_global_grid():
+    """Global 0.25° polygons with Global_Model_Grid_ID"""
+    gdf = ei_data.get_global_grids()
+    return gdf[["Global_Model_Grid_ID", "geometry"]]
+
+def prepare_and_merge(
+    df: pd.DataFrame,
+    grid_gdf: gpd.GeoDataFrame,
+    id_col: str,
+    simplify_tol: float = 0.0005,
+    quantize_digits: int = 4
+) -> gpd.GeoDataFrame:
+    """Generic polygon merge/clean for UK or Global."""
+    if id_col not in df.columns:
+        raise KeyError(f"Expected ID column '{id_col}' not found in dataframe: {df.columns.tolist()}")
+    if VAR_NAME not in df.columns:
+        raise KeyError(f"Expected value column '{VAR_NAME}' not found in dataframe: {df.columns.tolist()}")
+
+    df2 = df[[id_col, VAR_NAME]].dropna(subset=[VAR_NAME]).copy()
+    # Smaller dtype helps file size without affecting visualization
     df2[VAR_NAME] = df2[VAR_NAME].astype(np.float16)
-    merged = grid_gdf.merge(df2, on="UK_Model_Grid_ID", how="inner")
+
+    merged = grid_gdf.merge(df2, on=id_col, how="inner")
     if merged.crs != "EPSG:4326":
         merged = merged.to_crs(epsg=4326)
-    merged["geometry"] = merged.geometry.simplify(
-        tolerance=simplify_tol, preserve_topology=True
-    )
+
+    merged["geometry"] = merged.geometry.simplify(tolerance=simplify_tol, preserve_topology=True)
+
     def _quantize(geom):
-        return transform(
-            lambda x, y: (round(x, quantize_digits), round(y, quantize_digits)),
-            geom
-        )
+        return transform(lambda x, y: (round(x, quantize_digits), round(y, quantize_digits)), geom)
+
     merged["geometry"] = merged.geometry.apply(_quantize)
     merged = merged.rename(columns={VAR_NAME: VAR_NAME_NEAT})
     return merged[["geometry", VAR_NAME_NEAT]]
 
-def save_map(gdf: gpd.GeoDataFrame, title: str, filename: str):
+def save_map(gdf: gpd.GeoDataFrame, title: str, filename: str, *, map_center=None, map_zoom=None):
     """
     Create a KeplerGl map for `gdf`, save to `filename`, and print confirmation.
-    Ensures the output directory exists.
+    Allows overriding map center/zoom for global view.
     """
-    # Prepare output path and directory
     out_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../book/_static'))
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, filename)
 
-    # Prepare config copy
     conf = copy.deepcopy(base_config)
     conf['config']['visState']['layers'][0]['config']['dataId'] = title
     conf['config']['visState']['layers'][0]['config']['label'] = title
@@ -175,27 +191,51 @@ def save_map(gdf: gpd.GeoDataFrame, title: str, filename: str):
         title: [{'name': VAR_NAME_NEAT, 'format': None}]
     }
 
-    # Create and save map
+    # Optional global view override
+    if map_center is not None:
+        conf['config']['mapState']['latitude'] = map_center[0]
+        conf['config']['mapState']['longitude'] = map_center[1]
+    if map_zoom is not None:
+        conf['config']['mapState']['zoom'] = map_zoom
+
     kmap = KeplerGl(config=conf)
     kmap.add_data(data=gdf, name=title)
     kmap.save_to_html(file_name=out_path)
     print(f"{title} map saved to {out_path}")
 
-
 def main():
-    grid_gdf    = load_uk_grid()
-    typ_df       = ei_data.air_pollution_concentration_typical_day_real_time_united_kingdom(
-                    MONTH, DAY_OF_WEEK, HOUR, data_type="Output"
-                  )
-    typ_prepared = prepare_and_merge(typ_df, grid_gdf)
+    # ---------- UK (SynthHAPPE Output) ----------
+    grid_uk = load_uk_grid()
+    typ_df = ei_data.air_pollution_concentration_typical_day_real_time_united_kingdom(
+        MONTH, DAY_OF_WEEK, HOUR, data_type="Output"
+    )
+    typ_prep = prepare_and_merge(typ_df, grid_uk, id_col="UK_Model_Grid_ID")
+    save_map(typ_prep, title="Typical Day NO₂ Prediction", filename="synthhappe_no2.html")
 
-    rt_df        = ei_data.air_pollution_concentration_complete_set_real_time_united_kingdom(
-                    REALTIME_TIME, data_type="Output"
-                  )
-    rt_prepared  = prepare_and_merge(rt_df, grid_gdf)
+    # ---------- UK (ML-HAPPE Output, 2018 underscore) ----------
+    rt_df_uk = ei_data.air_pollution_concentration_complete_set_real_time_united_kingdom(
+        UK_REALTIME_TIME,  # underscore stays for UK
+        data_type="Output"
+    )
+    rt_prep_uk = prepare_and_merge(rt_df_uk, grid_uk, id_col="UK_Model_Grid_ID")
+    save_map(rt_prep_uk, title="Real-Time NO₂ Prediction (UK)", filename="mlhappe_no2.html")
 
-    save_map(typ_prepared, title="Typical Day NO₂ Prediction", filename="synthhappe_no2.html")
-    save_map(rt_prepared,  title="Real-Time NO₂ Prediction",  filename="mlhappe_no2.html")
+    # ---------- GLOBAL (ML-HAPPG Output, 2022 space) ----------
+    grid_glob  = load_global_grid()
+    rt_df_glob = ei_data.air_pollution_concentration_complete_set_real_time_global(
+        GLOBAL_REALTIME_TIME,  # space format for global
+        data_type="Output"
+    )
+    rt_prep_glb = prepare_and_merge(rt_df_glob, grid_glob, id_col="Global_Model_Grid_ID")
+
+    # Global view: center near (0,0), zoom ~1.8
+    save_map(
+        rt_prep_glb,
+        title="Real-Time NO₂ Prediction (Global)",
+        filename="mlhappg_no2.html",
+        map_center=(0.0, 0.0),
+        map_zoom=1.8
+    )
 
 if __name__ == "__main__":
     main()

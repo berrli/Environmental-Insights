@@ -7,6 +7,7 @@ parts:
   - caption: Data Explorer
     chapters:
       - file: notebooks/data_explorer/data_explorer_england
+      - file: notebooks/data_explorer/data_explorer_global
       - file: notebooks/data_explorer/data_explorer_england_synthetic
       - file: notebooks/data_explorer/training_data_explorer
   - caption: Package Explorer 
