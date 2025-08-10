@@ -405,34 +405,173 @@ def air_pollution_concentration_nearest_point_real_time_united_kingdom(
     closest_points = closest_points.drop(columns=["UK_Model_Grid_ID", "geometry"])
     return closest_points
 
-
-def air_pollution_concentration_complete_set_real_time_global(time):
+def air_pollution_concentration_complete_set_real_time_global(
+    time: str,
+    data_type: str = "Input",
+):
     """
-    Retrieve the complete calculated dataset for a given timestamp in the global dataset.
+    Retrieve the complete predicted dataset (Input or Output) for a given timestamp
+    in the Global ML-HAPPG dataset. This mirrors the UK real-time helper but
+    points at ML-HAPPG and uses Global file locations.
 
-    Parameters:
-    time (string): A string denoting the timestamp desired, of the form DD-MM-YYYY HHmmss.
+    Parameters
+    ----------
+    time : str
+        Timestamp of the form "YYYY-MM-DD HHmmss" (e.g., "2022-01-03 120000").
+        Note: ensure the date exists in the ML-HAPPG archive (e.g., 2022).
+    data_type : {"Input","Output"}, default "Input"
+        Which dataset to fetch.
 
-    Returns:
-    DataFrame: A DataFrame of the dataset for the global model for a given timestamp.
+    Returns
+    -------
+    pandas.DataFrame
+        The full global grid at the specified timestamp as a flattened DataFrame.
     """
-    # Construct the full path to the data file
-    desired_filename = os.path.join(
+    # validate data_type
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
+
+    # build local directory and filename based on Input/Output
+    out_dir = os.path.join(
         script_dir,
         "environmental_insights_data",
-        "air_pollution",
-        "global_complete_set",
-        f"{time}.feather",
+        "ML-HAPPG",
+        data_type,
     )
-    if not os.path.isfile(desired_filename):   
-        print("Dataset not yet avaiable")
-        return None
+    os.makedirs(out_dir, exist_ok=True)
 
-    air_pollution_data = pd.read_feather(desired_filename)
-    air_pollution_data = air_pollution_data.rename(
-        columns={"id": "Global Model Grid ID"}
+    filename = f"{time}.nc"
+    full_path = os.path.join(out_dir, filename)
+
+    # download from CEDA if not already on disk
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="ML-HAPPG",
+            data_type=data_type,
+            timestamp=time,
+            output_dir=out_dir,
+        )
+
+    # read NetCDF and convert to DataFrame
+    nc = read_nc(full_path)
+    df = netcdf_to_dataframe(nc)
+    return df
+
+
+
+
+def air_pollution_concentration_nearest_point_real_time_global(
+    latitude: float,
+    longitude: float,
+    time: str,
+    global_grids,
+    data_type: str = "Input",
+):
+    """
+    Retrieve a single air pollution concentration (Input or Output)
+    for the Global ML-HAPPG model at the closest grid to a given lat/long and timestamp.
+
+    Returns
+    -------
+    pandas.DataFrame
+        One-row DataFrame with the nearest grid’s values.
+    """
+    if data_type not in ("Input", "Output"):
+        raise ValueError(f"data_type must be 'Input' or 'Output', got '{data_type}'")
+
+    out_dir = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "ML-HAPPG",
+        data_type,
     )
-    return air_pollution_data
+    os.makedirs(out_dir, exist_ok=True)
+
+    filename = f"{time}.nc"
+    full_path = os.path.join(out_dir, filename)
+
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="ML-HAPPG",
+            data_type=data_type,
+            timestamp=time,
+            output_dir=out_dir,
+        )
+
+    air_pollution_data = netcdf_to_dataframe(read_nc(full_path))
+
+    # Join to global grids by ID then do nearest-neighbour on centroids
+    air_pollution_data = global_grids.merge(
+        air_pollution_data, on="Global_Model_Grid_ID"
+    )
+    air_pollution_data["geometry"] = air_pollution_data["geometry"].centroid
+    air_pollution_data = air_pollution_data.to_crs(4326)
+    air_pollution_data["Latitude"] = air_pollution_data["geometry"].y
+    air_pollution_data["Longitude"] = air_pollution_data["geometry"].x
+
+    tree = cKDTree(air_pollution_data[["Latitude", "Longitude"]])
+    distance, idx = tree.query([latitude, longitude], k=1)
+
+    closest_points = pd.DataFrame(air_pollution_data.iloc[idx]).T
+    closest_points["Distance"] = distance
+    closest_points = closest_points.rename(
+        columns={"Latitude": "Prediction Latitude", "Longitude": "Prediction Longitude"}
+    )
+    closest_points["Requested Latitude"] = latitude
+    closest_points["Requested Longitude"] = longitude
+    closest_points = closest_points.drop(columns=["geometry"])
+    return closest_points
+
+def get_global_monitoring_station(
+    pollutant: str,
+    station: str,
+) -> gpd.GeoDataFrame:
+    """
+    Download (if needed) and load ML-HAPPG training data for a single global monitoring station.
+    """
+    out_dir = os.path.join(
+        script_dir,
+        "environmental_insights_data",
+        "ML-HAPPG",
+        "Training_Data",
+        pollutant
+    )
+    os.makedirs(out_dir, exist_ok=True)
+
+    fname = station if station.endswith(".nc") else f"{station}.nc"
+    full_path = os.path.join(out_dir, fname)
+
+    if not os.path.isfile(full_path):
+        ei_download.download(
+            dataset="ML-HAPPG",
+            data_type="Training_Data",
+            pollutant=pollutant,
+            station=station,
+            output_dir=out_dir,
+        )
+
+    # Build geometry robustly: prefer lon/lat if present, else fall back to Easting/Northing.
+    ds = read_nc(full_path)
+    df = netcdf_to_dataframe(ds)
+    if {"Longitude", "Latitude"}.issubset(df.columns):
+        geometry = [Point(xy) for xy in zip(df["Longitude"], df["Latitude"])]
+        gdf = gpd.GeoDataFrame(df.copy(), geometry=geometry, crs=4326)
+    elif {"Easting", "Northing"}.issubset(df.columns):
+        geometry = [Point(xy) for xy in zip(df["Easting"], df["Northing"])]
+        gdf = gpd.GeoDataFrame(df.copy(), geometry=geometry, crs=3395)
+    else:
+        raise KeyError("Could not find coordinate columns (Longitude/Latitude or Easting/Northing).")
+    return gdf
+
+
+def get_global_monitoring_stations(pollutant: str) -> List[str]:
+    """
+    Return the list of global station names for a pollutant (ML-HAPPG).
+    """
+    if pollutant not in ei_download.POLLUTANTS:
+        raise ValueError(f"Invalid pollutant: {pollutant}")
+    return ei_download.get_training_station_names("ML-HAPPG", pollutant)
+
 
 
 def get_amenities_as_geodataframe(amenity_type, min_lat, min_lon, max_lat, max_lon):
@@ -810,5 +949,5 @@ def get_global_grids():
         "025latlong_world_grids.gpkg",
     )
     global_grids = gpd.read_file(grid_filename)
-    global_grids = global_grids.rename(columns={"id": "Global Model Grid ID"})
+    global_grids = global_grids.rename(columns={"id": "Global_Model_Grid_ID"})
     return global_grids

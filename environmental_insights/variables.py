@@ -848,3 +848,29 @@ featureVectorSubsets = {
     + osmRoadInfrastructure
     + geographicColumns,
 }
+
+ML_HAPPG_Model_Names = {
+    # Meteorology
+    "U_Component_of_Wind_100m": "100m_U_Component_of_Wind",
+    "V_Component_of_Wind_100m": "100m_V_Component_of_Wind",
+    "U_Component_of_Wind_10m":  "10m_U_Component_of_Wind",
+    "V_Component_of_Wind_10m":  "10m_V_Component_of_Wind",
+    "Dewpoint_Temperature_2m":  "2m_Dewpoint_Temperature",
+    "Temperature_2m":           "2m_Temperature",
+
+    # Sentinel-5P
+    "Sentinel_5P_NO2": "S5P_NO₂",
+    "Sentinel_5P_AAI": "S5P_Absorbing_Aerosol_Index",
+    "Sentinel_5P_CO":  "S5P_CO",
+    "Sentinel_5P_O3":  "S5P_O₃",
+    "Sentinel_5P_HCHO":"S5P_HCHO",
+
+    # Emissions (example normalisations)
+    "Anthropogenic_Emissions_Sum_Sectors_CO":         "Anthropogenic_Emissions_Sum_Sectors_co",
+    "Anthropogenic_Emissions_Sum_Sectors_NOX":        "Anthropogenic_Emissions_Sum_Sectors_nox",
+    "Anthropogenic_Emissions_Sum_Sectors_NMVOCs":     "Anthropogenic_Emissions_Sum_Sectors_nmvocs",
+    "Anthropogenic_Emissions_Sum_Sectors_Other_VOCs": "Anthropogenic_Emissions_Sum_Sectors_other-vocs",
+    "Anthropogenic_Emissions_Sum_Sectors_SO2":        "Anthropogenic_Emissions_Sum_Sectors_so2",
+}
+
+

@@ -12,12 +12,13 @@ from pathlib import Path
 PACKAGE_ROOT = Path(environmental_insights.__file__).parent
 
 # Base URLs for datasets
+# Base URLs for datasets
 BASE_URLS = {
-    "ML-HAPPE": "https://dap.ceda.ac.uk/badc/deposited2025/ML-HAPPE/",
+    "ML-HAPPE":  "https://dap.ceda.ac.uk/badc/deposited2025/ML-HAPPE/",
+    "ML-HAPPG":  "https://dap.ceda.ac.uk/badc/deposited2025/ML-HAPPG/",
     "SynthHAPPE": "https://dap.ceda.ac.uk/badc/deposited2025/SynthHAPPE/",
     "SynthHAPPE_v2": "https://dap.ceda.ac.uk/badc/deposited2025/SynthHAPPE_v2/",
 }
-
 # Valid options
 DATASETS = list(BASE_URLS.keys())
 ML_HAPPE_TYPES = ["Input", "Output", "Models", "Training_Data"]
@@ -134,35 +135,43 @@ def download_time_point_synth(
 
 
 def download_models(
+    dataset: str,
     model_level: str,
     pollutant: str,
     model_category: str,
     token: Optional[str] = None,
     output_dir: Optional[Union[str, Path]] = None
 ) -> None:
-    """
-    Download the LightGBM booster and params files for a given model.
-    - For ML-HAPPE models: path is ML-HAPPE/Models/{level}/{pollutant}/All_Stations/{pollutant}_{category}
-    - For SynthHAPPE_v2 models: path is SynthHAPPE_v2/Models/{category}
-    """
-    # normalize output_dir
     out = Path(output_dir or Path.cwd())
-    if model_category not in MODEL_CATEGORIES:
-        raise ValueError(f"Unknown model_category: {model_category!r}")
 
-    # pick namespace & build subdir(s)
+    # accept both "temporal" and "Temporal_Models"
+    cat_lower = model_category.lower()
+
+    # allow the two SynthHAPPE_v2 categories to pass straight through
     if model_category in ("Climate_Projections_Models", "Transport_Infrastructure_Policy_Models"):
         base = BASE_URLS["SynthHAPPE_v2"]
         subdirs = [f"Models/{model_category}"]
+
+    # special-case ML-HAPPG temporal layout
+    elif dataset == "ML-HAPPG" and cat_lower in ("temporal", "temporal_models"):
+        base = BASE_URLS["ML-HAPPG"]
+        subdirs = [f"Models/{model_level}/temporal/{pollutant}"]
+
     else:
-        base = BASE_URLS["ML-HAPPE"]
+        if dataset not in ("ML-HAPPE", "ML-HAPPG"):
+            raise ValueError("dataset must be 'ML-HAPPE' or 'ML-HAPPG'")
+
+        # (optional) keep your existing category validation for other cases
+        # if model_category not in MODEL_CATEGORIES:
+        #     raise ValueError(f"Unknown model_category: {model_category!r}")
+
+        base = BASE_URLS[dataset]
         cats = MODEL_CATEGORIES[1:] if model_category == "All" else [model_category]
         subdirs = [
             f"Models/{model_level}/{pollutant}/All_Stations/{pollutant}_{cat}"
             for cat in cats
         ]
 
-    # download each file in each subdir
     for sd in subdirs:
         for fname in ("model_booster.txt", "model_params.json"):
             url = f"{base}{sd}/{fname}"
@@ -175,31 +184,38 @@ def download_models(
 
 
 
+
 def download_training_data(
+    dataset: str,
     pollutant: str,
     station: str,
     token: Optional[str] = None,
     output_dir: Optional[Union[str, Path]] = None
 ) -> None:
     """
-    Download ML-HAPPE training data .nc for a station.
+    Download ML-HAPPE or ML-HAPPG training-data .nc for a single station.
     """
+    if dataset not in ("ML-HAPPE", "ML-HAPPG"):
+        raise ValueError("dataset must be 'ML-HAPPE' or 'ML-HAPPG'")
     if pollutant not in POLLUTANTS:
         raise ValueError(f"Invalid pollutant: {pollutant}")
-    fn = station if station.endswith('.nc') else f"{station}.nc"
-    url = f"{BASE_URLS['ML-HAPPE']}Training_Data/{pollutant}/{fn}"
+    fn = station if station.endswith(".nc") else f"{station}.nc"
+    url = f"{BASE_URLS[dataset]}Training_Data/{pollutant}/{fn}"
     download_file(url, output_dir, token)
 
 def get_training_station_names(
+    dataset: str,
     pollutant: str
 ) -> list[str]:
     """
-    Return a sorted list of all station names (without “.nc”) available
-    under ML-HAPPE/Training_Data/{pollutant}/.
+    Return a sorted list of station names (without '.nc') for
+    ML-HAPPE or ML-HAPPG under Training_Data/{pollutant}/.
     """
+    if dataset not in ("ML-HAPPE", "ML-HAPPG"):
+        raise ValueError("dataset must be 'ML-HAPPE' or 'ML-HAPPG'")
     if pollutant not in POLLUTANTS:
         raise ValueError(f"Invalid pollutant: {pollutant}")
-    url = f"{BASE_URLS['ML-HAPPE']}Training_Data/{pollutant}/"
+    url = f"{BASE_URLS[dataset]}Training_Data/{pollutant}/"
     resp = requests.get(url)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
@@ -209,7 +225,6 @@ def get_training_station_names(
         if link["href"].endswith(".nc")
     }
     return sorted(stations)
-
 
 def download(
     dataset: str,
@@ -245,22 +260,31 @@ def download(
             raise ValueError("`timestamp` is required for ML-HAPPE Input/Output downloads")
         download_time_point_ml(dataset, data_type, timestamp, token, output_dir)
     elif data_type == 'Models':
-        if not model_level or not pollutant:
-            raise ValueError("`model_level` and `pollutant` are required for Models downloads")
-        download_models(model_level, pollutant, token, output_dir)
+        if not model_level or not pollutant or not model_category:
+            raise ValueError("`model_level`, `pollutant`, and `model_category` are required for Models downloads")
+        download_models(
+            dataset=dataset,                    
+            model_level=model_level,
+            pollutant=pollutant,
+            model_category=model_category,     
+            token=token,
+            output_dir=output_dir
+        )
     elif data_type == 'Training_Data':
         if not pollutant:
             raise ValueError("`pollutant` is required for Training_Data")
         if station:
-            # ------ SINGLE-STATION DOWNLOAD: ------
+            # single-station download (UK or Global)
             download_training_data(
+                dataset=dataset,         # <-- pass through as-is (ML-HAPPE or ML-HAPPG)
                 pollutant=pollutant,
                 station=station,
                 token=token,
                 output_dir=output_dir
             )
         else:
-            # ------ LIST AVAILABLE STATIONS: ------
-            return get_training_station_names(pollutant, token)
+            # list stations (UK or Global)
+            return get_training_station_names(dataset, pollutant)
     else:
-        raise ValueError(f"Type for ML-HAPPE must be one of {ML_HAPPE_TYPES}")
+        raise ValueError(f"Type for ML-HAPP{{E,G}} must be one of {ML_HAPPE_TYPES}")
+
