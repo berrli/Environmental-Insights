@@ -226,6 +226,32 @@ def make_concentration_predictions_united_kingdom(
 
     return out
 
+def make_concentration_predictions_global(
+    estimating_model: lgb.LGBMRegressor,
+    observation_data: pd.DataFrame,
+    feature_names: List[str]
+) -> pd.DataFrame:
+    """
+    Predict concentrations using a trained GLOBAL LGBM model.
+    """
+    df = observation_data.copy()
+
+    # Extract only the model's expected features
+    X = df[feature_names].copy()
+
+    # Prediction
+    preds = estimating_model.predict(X)
+
+    # Transform back from log space
+    preds = np.exp(preds) - 1e-7
+
+    # Build output DataFrame
+    out = df[["Global_Model_Grid_ID"]].copy()
+    out["Model Prediction"] = preds
+
+    return out
+
+
 def rename_global_input_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Rename columns in a DataFrame to match the GLOBAL model's expected names."""
     return df.rename(columns=variables.ML_HAPPG_Model_Names)

@@ -190,7 +190,13 @@ def visualise_air_pollution_daily_air_quality_index(
     legend_patches = _plot_layers(ax, air_pollution_GDF, aqi_to_plot, colormap)
 
     # Add legend and save
-    ax.legend(handles=legend_patches, title="UK DAQI")
+    ax.legend(
+        handles=legend_patches,
+        title="UK DAQI",
+        loc="center left",
+        bbox_to_anchor=(1.05, 0.5),
+        borderaxespad=0.
+    )
     _save_figure(fig, filename)
 
 
@@ -231,7 +237,13 @@ def visualise_air_pollution_daily_air_quality_bands(
 
     fig, ax = _create_base_axes(plot_uk_outline, figsize=(5, 5))
     legend_patches = _plot_layers(ax, air_pollution_GDF, aqi_to_plot, colormap)
-    ax.legend(handles=legend_patches, title="UK DAQI Bands")
+    ax.legend(
+        handles=legend_patches,
+        title="UK DAQI Bands",
+        loc="center left",
+        bbox_to_anchor=(1.05, 0.5),
+        borderaxespad=0.
+    )
     _save_figure(fig, filename)
 
 

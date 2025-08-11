@@ -9,6 +9,7 @@ execute:
   execute_notebooks: "force"
   exclude_patterns:
     - 'tutorial_environmental_insights.ipynb'
+    - 'tutorial_predictions.ipynb'
 
 # Define the name of the LaTeX output file for PDF builds
 latex:

@@ -4,6 +4,7 @@ parts:
   - caption: Tutorial
     chapters:
       - file: notebooks/tutorial/tutorial_environmental_insights
+      - file: notebooks/tutorial/tutorial_predictions
   - caption: Data Explorer
     chapters:
       - file: notebooks/data_explorer/data_explorer_england
