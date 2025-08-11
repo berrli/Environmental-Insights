@@ -69,7 +69,7 @@ class TestAirPollutionDataFunctions(unittest.TestCase):
     def test_get_global_grids(self):
         gdf = ei_data.get_global_grids()
         self.assertIsInstance(gdf, gpd.GeoDataFrame)
-        self.assertIn("Global Model Grid ID", gdf.columns)
+        self.assertIn("Global_Model_Grid_ID", gdf.columns)
 
     @patch("environmental_insights.data.overpy.Overpass.query")
     def test_get_amenities_as_geodataframe_mock(self, mock_query):

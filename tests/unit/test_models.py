@@ -79,13 +79,30 @@ class TestModelFunctions(unittest.TestCase):
         )
         self.assertIsInstance(model, lgb.LGBMRegressor)
 
-    @patch("environmental_insights.models.load_model_united_kingdom")
-    def test_load_model_global(self, mock_load_model_uk):
-        mock_load_model_uk.return_value = "mock_model"
+    @patch("environmental_insights.download.download_file")
+    @patch("environmental_insights.models.load_lgbm_model_from_txt")
+    def test_load_model_global(self, mock_load_model, mock_download_file):
+        # Arrange
+        mock_load_model.return_value = lgb.LGBMRegressor()
 
-        result = ei_models.load_model_global("0.5", "o3", "Global_Models")
-        self.assertEqual(result, "mock_model")
-        mock_load_model_uk.assert_called_once_with("0.5", "o3", "Global_Models", None)
+        # Act
+        model = ei_models.load_model_global("mean", "no2", "temporal", token="abc123")
+
+        # Assert URLs (temporal layout)
+        base_url = ei_download.BASE_URLS["ML-HAPPG"]
+        remote_path = "Models/mean/temporal/no2"
+        expected_booster_url = f"{base_url}{remote_path}/model_booster.txt"
+        expected_params_url  = f"{base_url}{remote_path}/model_params.json"
+        expected_local_dir = ei_models.MODEL_ROOT / "ML-HAPPG" / remote_path
+
+        mock_download_file.assert_any_call(
+            expected_booster_url, output_dir=expected_local_dir, token="abc123"
+        )
+        mock_download_file.assert_any_call(
+            expected_params_url, output_dir=expected_local_dir, token="abc123"
+        )
+        assert isinstance(model, lgb.LGBMRegressor)
+
 
     def test_get_model_feature_vector(self):
         variables.featureVectorSubsets = {"test_model": ["feature1", "feature2"]}
