@@ -1,29 +1,60 @@
-name: "🔖 Release & Publish"
+name: "🔖 Release & Publish (Manual)"
 
 on:
-  push:
-    tags:
-      - "v*"           # build & publish whenever a v* tag is pushed
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (e.g., v0.3.0 or 0.3.0)"
+        required: true
+        type: string
+      publish_mode:
+        description: "Where to publish Python package"
+        required: true
+        default: auto
+        type: choice
+        options:
+          - auto       # pre-releases -> TestPyPI (if token), else PyPI
+          - pypi
+          - testpypi
+          - skip       # build only; no upload
+      create_release:
+        description: "Create a GitHub Release with assets"
+        required: true
+        default: true
+        type: boolean
+      verify_version:
+        description: "Fail if tag != pyproject version"
+        required: true
+        default: true
+        type: boolean
+      dry_run:
+        description: "Build only; no publish or release"
+        required: true
+        default: false
+        type: boolean
 
 permissions:
-  contents: write       # create GitHub Releases, upload assets
-  id-token: write       # (optional) OIDC for future PyPI trusted publishing
+  contents: write   # needed to create GitHub Releases
+  id-token: write   # future-proofing for PyPI trusted publishing
 
 concurrency:
-  group: release-${{ github.ref_name }}
+  group: release-${{ github.event.inputs.tag }}
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.verify.outputs.version }}
-      prerelease: ${{ steps.detect.outputs.prerelease }}
+      version: ${{ steps.meta.outputs.version }}
+      prerelease: ${{ steps.meta.outputs.prerelease }}
+      tag_name: ${{ steps.meta.outputs.tag_name }}
     steps:
-      - name: 👉 Checkout
+      - name: 👉 Checkout target ref
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Build exactly what's at the tag the user selected
+          ref: ${{ inputs.tag }}
 
       - name: 🐍 Set up Python
         uses: actions/setup-python@v5
@@ -39,31 +70,42 @@ jobs:
       - name: 📦 Build sdist and wheel
         run: python -m build
 
-      - name: ✅ Verify version matches tag
-        id: verify
+      - name: 🧭 Derive metadata (version, prerelease, tag)
+        id: meta
+        shell: bash
         run: |
-          TAG_NAME="${GITHUB_REF_NAME#v}"
-          PYPROJ_VERSION=$(python -c 'import toml; print(toml.load("pyproject.toml")["tool"]["poetry"]["version"])')
-          echo "Tag:        $TAG_NAME"
-          echo "PyProject:  $PYPROJ_VERSION"
-          if [ "$TAG_NAME" != "$PYPROJ_VERSION" ]; then
-            echo "Version mismatch: tag v$TAG_NAME != pyproject $PYPROJ_VERSION" >&2
+          INPUT_TAG="${{ inputs.tag }}"
+          # normalize: strip refs/tags/ and optional leading 'v'
+          TAG_NAME="${INPUT_TAG#refs/tags/}"
+          TAG_STRIPPED_V="${TAG_NAME#v}"
+
+          # Read version from pyproject
+          PYPROJ_VERSION=$(python - << 'PY'
+import toml
+print(toml.load("pyproject.toml")["tool"]["poetry"]["version"])
+PY
+)
+          echo "Tag:        ${TAG_STRIPPED_V}"
+          echo "PyProject:  ${PYPROJ_VERSION}"
+
+          if [ "${{ inputs.verify_version }}" = "true" ] && [ "$TAG_STRIPPED_V" != "$PYPROJ_VERSION" ]; then
+            echo "Version mismatch: tag v$TAG_STRIPPED_V != pyproject $PYPROJ_VERSION" >&2
             exit 1
           fi
-          echo "version=$TAG_NAME" >> $GITHUB_OUTPUT
+
+          # prerelease detection (PEP 440: a/b/rc)
+          if echo "$PYPROJ_VERSION" | grep -Eqi '(a|b|rc)'; then
+            PRERELEASE=true
+          else
+            PRERELEASE=false
+          fi
+
+          echo "version=$PYPROJ_VERSION" >> $GITHUB_OUTPUT
+          echo "prerelease=$PRERELEASE" >> $GITHUB_OUTPUT
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
 
       - name: 🔍 Twine check
         run: python -m twine check dist/*
-
-      - name: 🔎 Detect pre-release
-        id: detect
-        run: |
-          V="${{ steps.verify.outputs.version }}"
-          if echo "$V" | grep -Eqi '(a|b|rc)'; then
-            echo "prerelease=true" >> $GITHUB_OUTPUT
-          else
-            echo "prerelease=false" >> $GITHUB_OUTPUT
-          fi
 
       - name: ⬆️ Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -72,38 +114,44 @@ jobs:
           path: dist/*
 
   publish:
+    if: ${{ inputs.dry_run != 'true' && inputs.publish_mode != 'skip' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Download build artifacts
+      - name: ⬇️ Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
-      # Prefer TestPyPI for pre-releases if TEST_PYPI_API_TOKEN is provided.
-      - name: 🚀 Publish to TestPyPI (pre-releases)
-        if: needs.build.outputs.prerelease == 'true' && env.TEST_PYPI_API_TOKEN != ''
+      # Choose TestPyPI if:
+      #  - publish_mode == testpypi, OR
+      #  - publish_mode == auto AND version is prerelease
+      - name: 🚀 Publish to TestPyPI
+        if: ${{ (inputs.publish_mode == 'testpypi') || (inputs.publish_mode == 'auto' && needs.build.outputs.prerelease == 'true') }}
         uses: pypa/gh-action-pypi-publish@release/v1
-        env:
-          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
         with:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
           packages-dir: dist
+        env:
+          # fail clearly if token missing
+          HAS_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        continue-on-error: false
 
       - name: 🚀 Publish to PyPI
-        if: needs.build.outputs.prerelease != 'true' || env.TEST_PYPI_API_TOKEN == ''
+        if: ${{ (inputs.publish_mode == 'pypi') || (inputs.publish_mode == 'auto' && needs.build.outputs.prerelease != 'true') }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages-dir: dist
 
   github_release:
+    if: ${{ inputs.dry_run != 'true' && inputs.create_release == 'true' }}
     needs: [build, publish]
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Download build artifacts
+      - name: ⬇️ Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist
@@ -112,7 +160,7 @@ jobs:
       - name: 📝 Create GitHub Release (auto notes)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ needs.build.outputs.tag_name }}
           generate_release_notes: true
           prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
           files: |
