@@ -1,167 +1,50 @@
-name: "🔖 Release & Publish (Manual)"
+name: 🔖 Release & Publish
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "Tag to release (e.g., v0.3.0 or 0.3.0)"
-        required: true
-        type: string
-      publish_mode:
-        description: "Where to publish Python package"
-        required: true
-        default: auto
-        type: choice
-        options:
-          - auto       # pre-releases -> TestPyPI (if token), else PyPI
-          - pypi
-          - testpypi
-          - skip       # build only; no upload
-      create_release:
-        description: "Create a GitHub Release with assets"
-        required: true
-        default: true
-        type: boolean
-      verify_version:
-        description: "Fail if tag != pyproject version"
-        required: true
-        default: true
-        type: boolean
-      dry_run:
-        description: "Build only; no publish or release"
-        required: true
-        default: false
-        type: boolean
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'
 
 permissions:
-  contents: write   # needed to create GitHub Releases
-  id-token: write   # future-proofing for PyPI trusted publishing
-
-concurrency:
-  group: release-${{ github.event.inputs.tag }}
-  cancel-in-progress: false
+  contents: write   # needed to push tags
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.meta.outputs.version }}
-      prerelease: ${{ steps.meta.outputs.prerelease }}
-      tag_name: ${{ steps.meta.outputs.tag_name }}
+    env:
+      # PyPI API token (store in your repo’s Secrets as PYPI_API_TOKEN)
+      TWINE_USERNAME: __token__
+      TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      # Personal Access Token for pushing tags (store as REPO_PAT)
+      REPO_PAT: ${{ secrets.REPO_PAT }}
     steps:
-      - name: 👉 Checkout target ref
-        uses: actions/checkout@v4
+      - name: 👉 Checkout
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          # Build exactly what's at the tag the user selected
-          ref: ${{ inputs.tag }}
+          persist-credentials: false   # we’ll supply our PAT below
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-
-      - name: 🛠️ Install build tools
+      - name: 🛠️ Install tools
         run: |
           python -m pip install --upgrade pip
-          pip install build twine toml
+          pip install toml build twine
 
-      - name: 📦 Build sdist and wheel
-        run: python -m build
-
-      - name: 🧭 Derive metadata (version, prerelease, tag)
-        id: meta
-        shell: bash
+      - name: 📦 Read version
+        id: get_version
         run: |
-          INPUT_TAG="${{ inputs.tag }}"
-          # normalize: strip refs/tags/ and optional leading 'v'
-          TAG_NAME="${INPUT_TAG#refs/tags/}"
-          TAG_STRIPPED_V="${TAG_NAME#v}"
+          version=$(python3 -c 'import toml; print(toml.load("pyproject.toml")["tool"]["poetry"]["version"])')
+          echo "version=$version" >> $GITHUB_OUTPUT
 
-          # Read version from pyproject
-          PYPROJ_VERSION=$(python - << 'PY'
-import toml
-print(toml.load("pyproject.toml")["tool"]["poetry"]["version"])
-PY
-)
-          echo "Tag:        ${TAG_STRIPPED_V}"
-          echo "PyProject:  ${PYPROJ_VERSION}"
+      - name: 🏷️ Create & push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ steps.get_version.outputs.version }}"
+          git push https://x-access-token:${REPO_PAT}@github.com/${{ github.repository }} --tags
 
-          if [ "${{ inputs.verify_version }}" = "true" ] && [ "$TAG_STRIPPED_V" != "$PYPROJ_VERSION" ]; then
-            echo "Version mismatch: tag v$TAG_STRIPPED_V != pyproject $PYPROJ_VERSION" >&2
-            exit 1
-          fi
-
-          # prerelease detection (PEP 440: a/b/rc)
-          if echo "$PYPROJ_VERSION" | grep -Eqi '(a|b|rc)'; then
-            PRERELEASE=true
-          else
-            PRERELEASE=false
-          fi
-
-          echo "version=$PYPROJ_VERSION" >> $GITHUB_OUTPUT
-          echo "prerelease=$PRERELEASE" >> $GITHUB_OUTPUT
-          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
-
-      - name: 🔍 Twine check
-        run: python -m twine check dist/*
-
-      - name: ⬆️ Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/*
-
-  publish:
-    if: ${{ inputs.dry_run != 'true' && inputs.publish_mode != 'skip' }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-      # Choose TestPyPI if:
-      #  - publish_mode == testpypi, OR
-      #  - publish_mode == auto AND version is prerelease
-      - name: 🚀 Publish to TestPyPI
-        if: ${{ (inputs.publish_mode == 'testpypi') || (inputs.publish_mode == 'auto' && needs.build.outputs.prerelease == 'true') }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository-url: https://test.pypi.org/legacy/
-          packages-dir: dist
-        env:
-          # fail clearly if token missing
-          HAS_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        continue-on-error: false
+      - name: 📦 Build distributions
+        run: python -m build --sdist --wheel
 
       - name: 🚀 Publish to PyPI
-        if: ${{ (inputs.publish_mode == 'pypi') || (inputs.publish_mode == 'auto' && needs.build.outputs.prerelease != 'true') }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages-dir: dist
-
-  github_release:
-    if: ${{ inputs.dry_run != 'true' && inputs.create_release == 'true' }}
-    needs: [build, publish]
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-      - name: 📝 Create GitHub Release (auto notes)
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ needs.build.outputs.tag_name }}
-          generate_release_notes: true
-          prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
-          files: |
-            dist/*
+        run: python -m twine upload dist/*
