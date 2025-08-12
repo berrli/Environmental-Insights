@@ -7,7 +7,7 @@ where = ["."]
 
 [tool.poetry]
 name = "environmental_insights"
-version = "0.2.12"
+version = "0.3.0"
 description = "A Python package for democratizing access to ambient air pollution data and predictive analytics."
 authors = ["Liam J. Berrisford <l.berrisford3@exeter.ac.uk>"]
 license = "GPL-3.0-or-later"
