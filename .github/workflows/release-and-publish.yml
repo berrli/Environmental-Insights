@@ -1,0 +1,119 @@
+name: "🔖 Release & Publish"
+
+on:
+  push:
+    tags:
+      - "v*"           # build & publish whenever a v* tag is pushed
+
+permissions:
+  contents: write       # create GitHub Releases, upload assets
+  id-token: write       # (optional) OIDC for future PyPI trusted publishing
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.verify.outputs.version }}
+      prerelease: ${{ steps.detect.outputs.prerelease }}
+    steps:
+      - name: 👉 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 🛠️ Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine toml
+
+      - name: 📦 Build sdist and wheel
+        run: python -m build
+
+      - name: ✅ Verify version matches tag
+        id: verify
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME#v}"
+          PYPROJ_VERSION=$(python -c 'import toml; print(toml.load("pyproject.toml")["tool"]["poetry"]["version"])')
+          echo "Tag:        $TAG_NAME"
+          echo "PyProject:  $PYPROJ_VERSION"
+          if [ "$TAG_NAME" != "$PYPROJ_VERSION" ]; then
+            echo "Version mismatch: tag v$TAG_NAME != pyproject $PYPROJ_VERSION" >&2
+            exit 1
+          fi
+          echo "version=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: 🔍 Twine check
+        run: python -m twine check dist/*
+
+      - name: 🔎 Detect pre-release
+        id: detect
+        run: |
+          V="${{ steps.verify.outputs.version }}"
+          if echo "$V" | grep -Eqi '(a|b|rc)'; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: ⬆️ Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      # Prefer TestPyPI for pre-releases if TEST_PYPI_API_TOKEN is provided.
+      - name: 🚀 Publish to TestPyPI (pre-releases)
+        if: needs.build.outputs.prerelease == 'true' && env.TEST_PYPI_API_TOKEN != ''
+        uses: pypa/gh-action-pypi-publish@release/v1
+        env:
+          TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: dist
+
+      - name: 🚀 Publish to PyPI
+        if: needs.build.outputs.prerelease != 'true' || env.TEST_PYPI_API_TOKEN == ''
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages-dir: dist
+
+  github_release:
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: 📝 Create GitHub Release (auto notes)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
+          files: |
+            dist/*

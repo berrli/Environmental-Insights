@@ -1,0 +1,99 @@
+name: "🔼 Bump Version & Tag"
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "How to compute the next version (Poetry bump rule or explicit)"
+        required: true
+        default: patch
+        type: choice
+        options: [patch, minor, major, prepatch, preminor, premajor, prerelease, explicit]
+      set_version:
+        description: 'If mode="explicit": exact PEP 440 version (e.g., 1.3.0, 1.3.0rc1, 1.3.0a1)'
+        required: false
+        type: string
+      dry_run:
+        description: "Do everything except commit, tag, and push"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 👉 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 📦 Install Poetry
+        run: pipx install poetry
+
+      - name: 🔎 Show current version
+        id: current
+        run: echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
+
+      - name: 🔧 Bump version in pyproject.toml
+        id: bump
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "$MODE" = "explicit" ]; then
+            V="${{ github.event.inputs.set_version }}"
+            if [ -z "$V" ]; then
+              echo "set_version is required when mode=explicit" >&2
+              exit 1
+            fi
+            poetry version "$V"
+          else
+            poetry version "$MODE"
+          fi
+          NEWV=$(poetry version -s)
+          echo "new=$NEWV" >> $GITHUB_OUTPUT
+          echo "tag=v$NEWV" >> $GITHUB_OUTPUT
+
+      - name: 📣 Summary
+        run: |
+          echo "From: ${{ steps.current.outputs.version }}"
+          echo "To:   ${{ steps.bump.outputs.new }}"
+          echo "Tag:  ${{ steps.bump.outputs.tag }}"
+
+      - name: 🧪 Stop here (dry run)
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        run: |
+          echo "Dry-run: not committing, tagging, or pushing."
+          exit 0
+
+      - name: ✅ Commit version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml || true
+          # Commit lockfile too if present
+          git add -f poetry.lock || true
+          git commit -m "chore(release): bump version to v${{ steps.bump.outputs.new }}" || echo "No changes to commit."
+          git push || true
+
+      - name: 🏷️ Create annotated tag
+        run: |
+          TAG="${{ steps.bump.outputs.tag }}"
+          git fetch --tags
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists – skipping tag creation."
+          else
+            git tag -a "$TAG" -m "Release $TAG"
+            git push origin "$TAG"
+          fi
