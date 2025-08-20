@@ -41,6 +41,43 @@ Returns
 -------
 pd.DataFrame
 
+<a id="environmental_insights.data.get_uk_monitoring_station"></a>
+
+#### get\_uk\_monitoring\_station
+
+```python
+def get_uk_monitoring_station(pollutant: str,
+                              station: str) -> gpd.GeoDataFrame
+```
+
+Download (if needed) and load ML-HAPPE training data for a single UK monitoring station.
+
+Parameters
+----------
+pollutant : str
+    One of the POLLUTANTS in ML-HAPPE (e.g. "no2").
+station : str
+    Name of the station (without “.nc”).
+token : str, optional
+    Your CEDA API token, if required.
+
+Returns
+-------
+GeoDataFrame
+    The station’s training data as a GeoDataFrame, with a Point geometry
+    constructed from its latitude/longitude.
+
+<a id="environmental_insights.data.get_uk_monitoring_stations"></a>
+
+#### get\_uk\_monitoring\_stations
+
+```python
+def get_uk_monitoring_stations(pollutant: str) -> List[str]
+```
+
+Ensure the local ML-HAPPE Training_Data folder exists for a pollutant,
+then return the list of all station names by delegating to download.py.
+
 <a id="environmental_insights.data.air_pollution_concentration_typical_day_real_time_united_kingdom"></a>
 
 #### air\_pollution\_concentration\_typical\_day\_real\_time\_united\_kingdom
@@ -188,19 +225,68 @@ for the UK ML-HAPPE model at the closest grid point to a given lat/long and time
 #### air\_pollution\_concentration\_complete\_set\_real\_time\_global
 
 ```python
-def air_pollution_concentration_complete_set_real_time_global(time)
+def air_pollution_concentration_complete_set_real_time_global(
+        time: str, data_type: str = "Input")
 ```
 
-Retrieve the complete calculated dataset for a given timestamp in the global dataset.
+Retrieve the complete predicted dataset (Input or Output) for a given timestamp
+in the Global ML-HAPPG dataset. This mirrors the UK real-time helper but
+points at ML-HAPPG and uses Global file locations.
 
-**Arguments**:
+Parameters
+----------
+time : str
+Timestamp of the form "YYYY-MM-DD HHmmss" (e.g., "2022-01-03 120000").
+Note: ensure the date exists in the ML-HAPPG archive (e.g., 2022).
+data_type : {"Input","Output"}, default "Input"
+Which dataset to fetch.
 
-- `time` _string_ - A string denoting the timestamp desired, of the form DD-MM-YYYY HHmmss.
-  
+Returns
+-------
+pandas.DataFrame
+The full global grid at the specified timestamp as a flattened DataFrame.
 
-**Returns**:
+<a id="environmental_insights.data.air_pollution_concentration_nearest_point_real_time_global"></a>
 
-- `DataFrame` - A DataFrame of the dataset for the global model for a given timestamp.
+#### air\_pollution\_concentration\_nearest\_point\_real\_time\_global
+
+```python
+def air_pollution_concentration_nearest_point_real_time_global(
+        latitude: float,
+        longitude: float,
+        time: str,
+        global_grids,
+        data_type: str = "Input")
+```
+
+Retrieve a single air pollution concentration (Input or Output)
+for the Global ML-HAPPG model at the closest grid to a given lat/long and timestamp.
+
+Returns
+-------
+pandas.DataFrame
+    One-row DataFrame with the nearest grid’s values.
+
+<a id="environmental_insights.data.get_global_monitoring_station"></a>
+
+#### get\_global\_monitoring\_station
+
+```python
+def get_global_monitoring_station(pollutant: str,
+                                  station: str) -> gpd.GeoDataFrame
+```
+
+Download (if needed) and load ML-HAPPG training data for a single global monitoring station.
+
+<a id="environmental_insights.data.get_global_monitoring_stations"></a>
+
+#### get\_global\_monitoring\_stations
+
+```python
+def get_global_monitoring_stations(pollutant: str) -> List[str]
+```
+
+Return the list of global station names for a pollutant (ML-HAPPG).
 
 <a id="environmental_insights.data.get_amenities_as_geodataframe"></a>
 
@@ -397,6 +483,20 @@ Get the spatial grids that represent the locations at which air pollution estima
 **Returns**:
 
 - `GeoDataFrame` - A GeoDataFrame of the polygons for each of the grids in the UK Model alongside their centroid and unique ID.
+
+<a id="environmental_insights.data.get_uk_grids_outline"></a>
+
+#### get\_uk\_grids\_outline
+
+```python
+def get_uk_grids_outline()
+```
+
+Get the spatial grid outlines representing the boundaries of the UK Model's 1km grids.
+
+**Returns**:
+
+- `GeoDataFrame` - A GeoDataFrame of the grid outlines for each UK Model grid alongside their centroid and unique ID.
 
 <a id="environmental_insights.data.get_global_grids"></a>
 

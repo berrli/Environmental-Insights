@@ -41,17 +41,24 @@ pip install dist/environmental_insights-0.2.1b0-py3-none-any.whl
 
 ## 📂 Data Sources
 
-This package downloads and processes two primary CEDA datasets:
+This package downloads and processes three primary CEDA datasets:
 
-1. **Synthetic Hourly Air Pollution Prediction Averages for England (SynthHAPPE)**  
+1. **Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE)**  
+   Berrisford, L. (2025). *Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE).* NERC EDS Centre for Environmental Data Analysis.  
+   DOI: [10.5285/fc735f9878ed43e293b85f85e40df24d](https://dx.doi.org/10.5285/fc735f9878ed43e293b85f85e40df24d)  
+   > Full-year (2018) hourly modelled concentrations of NO₂, NO, NOₓ, O₃, PM₁₀, PM₂.₅ and SO₂ on a 1 km² grid, including 5th, 50th & 95th percentiles and underlying training data.
+
+2. **Machine Learning for Hourly Air Pollution Prediction - Global (ML-HAPPG)**  
+   Berrisford, L. (2025). *Machine Learning for Hourly Air Pollution Prediction – Global (ML-HAPPG).* NERC EDS Centre for Environmental Data Analysis.
+   DOI: [10.5285/7f91b1326a324caa9e436b8fdef4a0d8](https://dx.doi.org/10.5285/7f91b1326a324caa9e436b8fdef4a0d8)  
+   > Global hourly modelled concentrations for 2022 of NO₂, O₃, PM₁₀, PM₂.₅ and SO₂—offered on a 0.25° × 0.25° global grid with mean, 5th, 50th, and 95th percentile estimates.
+
+3. **Synthetic Hourly Air Pollution Prediction Averages for England (SynthHAPPE)**  
    Berrisford, L. (2025). *Synthetic Hourly Air Pollution Prediction Averages for England (SynthHAPPE).* NERC EDS Centre for Environmental Data Analysis.  
    DOI: [10.5285/4cbd9c53ab07497ba42de5043d1f414b](https://dx.doi.org/10.5285/4cbd9c53ab07497ba42de5043d1f414b)  
    > Representative “typical day” profiles of NO₂, NO, NOₓ, O₃, PM₁₀, PM₂.₅ and SO₂ on a 1 km² grid, with 5th, 50th & 95th percentiles.
 
-2. **Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE)**  
-   Berrisford, L. (2025). *Machine Learning for Hourly Air Pollution Prediction in England (ML-HAPPE).* NERC EDS Centre for Environmental Data Analysis.  
-   DOI: [10.5285/fc735f9878ed43e293b85f85e40df24d](https://dx.doi.org/10.5285/fc735f9878ed43e293b85f85e40df24d)  
-   > Full-year (2018) hourly modelled concentrations of NO₂, NO, NOₓ, O₃, PM₁₀, PM₂.₅ and SO₂ on a 1 km² grid, including 5th, 50th & 95th percentiles and underlying training data.
+
 
 ---
 
@@ -87,16 +94,6 @@ Integration and unit tests are under `tests/`.
 
 ---
 
-## 🤝 Contributing
-
-Contributions and bug-reports are very welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on:
-
-- Code style  
-- Pull request process  
-- Issue reporting  
-
----
-
 ## 📑 Citation
 
 If you use *Environmental Insights* in your work, please cite:
@@ -106,7 +103,8 @@ If you use *Environmental Insights* in your work, please cite:
 Also cite the underlying datasets:
 
 - Berrisford, L. (2025). *SynthHAPPE*: Synthetic Hourly Air Pollution Prediction Averages for England. NERC EDS CEDA. DOI: 10.5285/4cbd9c53ab07497ba42de5043d1f414b  
-- Berrisford, L. (2025). *ML-HAPPE*: Machine Learning for Hourly Air Pollution Prediction in England. NERC EDS CEDA. DOI: 10.5285/fc735f9878ed43e293b85f85e40df24d  
+- Berrisford, L. (2025). *ML-HAPPE*: Machine Learning for Hourly Air Pollution Prediction in England. NERC EDS CEDA. DOI: 10.5285/fc735f9878ed43e293b85f85e40df24d
+- Berrisford, L. (2025). *ML-HAPPG*: Machine Learning for Hourly Air Pollution Prediction - Global. NERC EDS CEDA. DOI: 10.5285/7f91b1326a324caa9e436b8fdef4a0d8 
 
 ---
 

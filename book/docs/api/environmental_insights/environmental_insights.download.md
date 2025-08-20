@@ -48,33 +48,31 @@ Download a single .nc file for SynthHAPPE with synthetic filename format:
 Month_<n>-Day_<DayName>-Hour_<h>.nc
 Month can be numeric or month name.
 
-<a id="environmental_insights.download.download_models"></a>
-
-#### download\_models
-
-```python
-def download_models(model_level: str,
-                    pollutant: str,
-                    model_category: str,
-                    token: Optional[str] = None,
-                    output_dir: Optional[Union[str, Path]] = None) -> None
-```
-
-Download ML-HAPPE model files for each category, or all if 'All' is specified.
-
 <a id="environmental_insights.download.download_training_data"></a>
 
 #### download\_training\_data
 
 ```python
 def download_training_data(
+        dataset: str,
         pollutant: str,
         station: str,
         token: Optional[str] = None,
         output_dir: Optional[Union[str, Path]] = None) -> None
 ```
 
-Download ML-HAPPE training data .nc for a station.
+Download ML-HAPPE or ML-HAPPG training-data .nc for a single station.
+
+<a id="environmental_insights.download.get_training_station_names"></a>
+
+#### get\_training\_station\_names
+
+```python
+def get_training_station_names(dataset: str, pollutant: str) -> list[str]
+```
+
+Return a sorted list of station names (without '.nc') for
+ML-HAPPE or ML-HAPPG under Training_Data/{pollutant}/.
 
 <a id="environmental_insights.download.download"></a>
 

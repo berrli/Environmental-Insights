@@ -38,11 +38,13 @@ def load_model_united_kingdom(
 Load a pretrained UK air pollution LGBM model for a specific category,
 downloading only the required booster + params.
 
-**Arguments**:
+Model directory structure (identical for both namespaces):
+  {namespace}/Models/{level}/{pollutant}/All_Stations/{pollutant}_{category}
+but when model_category == "All", use just {pollutant} with no suffix.
 
-  - model_level: one of ['0.05','0.5','0.95','mean']
-  - pollutant: one of ['no','no2','nox','o3','pm10','pm2p5','so2']
-  - model_category: one of MODEL_CATEGORIES or 'All'
+Namespaces:
+  - ML-HAPPE          (for existing categories)
+  - SynthHAPPE_v2     (for Climate_Projections_Models and Transport_Infrastructure_Policy_Models)
 
 <a id="environmental_insights.models.load_model_global"></a>
 
@@ -55,8 +57,15 @@ def load_model_global(model_level: str,
                       token: Optional[str] = None) -> lgb.LGBMRegressor
 ```
 
-Load a pretrained Global air pollution LGBM model for a specific category,
+Load a pretrained GLOBAL ML-HAPPG air pollution LGBM model for a specific category,
 downloading only the required booster + params.
+
+For 'temporal' category:
+    Models/{model_level}/temporal/{pollutant}
+For all other categories:
+    Models/{model_level}/{pollutant}/All_Stations/{suffix}
+    where suffix = pollutant if model_category == 'All'
+                  else f"{pollutant}_{model_category}"
 
 <a id="environmental_insights.models.make_concentration_predictions_united_kingdom"></a>
 
@@ -69,4 +78,26 @@ def make_concentration_predictions_united_kingdom(
 ```
 
 Predict concentrations using a trained LGBM model.
+
+<a id="environmental_insights.models.make_concentration_predictions_global"></a>
+
+#### make\_concentration\_predictions\_global
+
+```python
+def make_concentration_predictions_global(
+        estimating_model: lgb.LGBMRegressor, observation_data: pd.DataFrame,
+        feature_names: List[str]) -> pd.DataFrame
+```
+
+Predict concentrations using a trained GLOBAL LGBM model.
+
+<a id="environmental_insights.models.rename_global_input_columns"></a>
+
+#### rename\_global\_input\_columns
+
+```python
+def rename_global_input_columns(df: pd.DataFrame) -> pd.DataFrame
+```
+
+Rename columns in a DataFrame to match the GLOBAL model's expected names.
 
