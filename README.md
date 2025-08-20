@@ -102,9 +102,9 @@ If you use *Environmental Insights* in your work, please cite:
 
 Also cite the underlying datasets:
 
-- Berrisford, L. (2025). *SynthHAPPE*: Synthetic Hourly Air Pollution Prediction Averages for England. NERC EDS CEDA. DOI: 10.5285/4cbd9c53ab07497ba42de5043d1f414b  
 - Berrisford, L. (2025). *ML-HAPPE*: Machine Learning for Hourly Air Pollution Prediction in England. NERC EDS CEDA. DOI: 10.5285/fc735f9878ed43e293b85f85e40df24d
 - Berrisford, L. (2025). *ML-HAPPG*: Machine Learning for Hourly Air Pollution Prediction - Global. NERC EDS CEDA. DOI: 10.5285/7f91b1326a324caa9e436b8fdef4a0d8 
+- Berrisford, L. (2025). *SynthHAPPE*: Synthetic Hourly Air Pollution Prediction Averages for England. NERC EDS CEDA. DOI: 10.5285/4cbd9c53ab07497ba42de5043d1f414b  
 
 ---
 
